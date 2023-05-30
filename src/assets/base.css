@@ -1,0 +1,24 @@
+@import 'normalize.css';
+
+:root {
+	font-size: 6.25%; /* 1rem = 1px */
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	position: relative;
+	font: inherit;
+	color: inherit;
+	background-color: inherit;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	max-width: 1200px;
+	padding-inline: calc(1.25vw + 8rem);
+
+	font-size: 18rem;
+}
