@@ -1,13 +1,15 @@
 {
 	"name": "labelgenerator",
 	"version": "0.0.0",
+	"homepage": "https://pawrys.github.io/LabelGenerator/",
 	"private": true,
 	"scripts": {
 		"dev": "vite",
-		"build": "run-p type-check build-only",
-		"deploy": "gh-pages --dist dist",
+		"build": "vite build",
+		"deploy": "gh-pages -d dist",
+		"---": "---",
 		"preview": "vite preview",
-		"build-only": "vite build",
+		"build-check": "run-p type-check build-only",
 		"type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
 	},
 	"dependencies": {
