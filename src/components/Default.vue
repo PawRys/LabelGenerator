@@ -436,13 +436,13 @@ footer {
 
 .short-fields {
 	display: flex;
-	gap: 1em;
+	gap: 0.5em;
 	align-items: center;
 	border: none;
 }
 
 .short-input {
-	width: 8ch;
+	width: 10ch;
 }
 
 .form__item-glue {
