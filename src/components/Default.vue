@@ -55,7 +55,10 @@ async function extractDataFromPDF(files: FileList): Promise<string[]> {
 	let result = [];
 	for (let fileNo = 0; fileNo < filesCount; fileNo++) {
 		const file = files[fileNo];
-		if (file.type !== 'application/pdf') continue;
+		if (file.type !== 'application/pdf') {
+			console.log('Invalid file type:', file.type, file);
+			continue;
+		}
 		const arrayBuffer = await file.arrayBuffer();
 		const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
 		const pagesCount = pdf.numPages;
@@ -265,14 +268,12 @@ function plural(one: string, two: string, tre: string, val: number): String {
 
 		<template v-if="labelsStore.items.length > 0">
 			<section class="choice-break">---</section>
-			<div class="button-bar --narrow-box">
+			<div class="button-bar narrow-box">
 				<span class="paper-count">{{
 					`${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}`
 				}}</span>
 				<span class="paper-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
-				<span class="fake-spacer"></span>
-				<span class="fake-spacer"></span>
-				<span class="fake-spacer"></span>
+
 				<button class="cta" @click="printPage">Drukuj</button>
 				<button @click="labelsStore.removeAll()">Usuń wszystkie</button>
 			</div>
@@ -327,13 +328,15 @@ function plural(one: string, two: string, tre: string, val: number): String {
 </template>
 
 <style scoped>
+@page {
+	size: 210mm 297mm;
+	/* margin: 0; */
+}
+
 .printme {
 	display: none;
 }
 @media print {
-	@page {
-		size: A4 portrait;
-	}
 	.noprint {
 		display: none;
 	}
@@ -342,8 +345,8 @@ function plural(one: string, two: string, tre: string, val: number): String {
 	}
 
 	* {
-		box-sizing: border-box;
-		position: relative;
+		/* box-sizing: border-box;
+		position: relative; */
 		padding: 0;
 		border: 0;
 		margin: 0;
@@ -353,7 +356,9 @@ function plural(one: string, two: string, tre: string, val: number): String {
 		display: grid;
 		gap: 1cm;
 		grid-template-rows: 1fr 1px 1fr;
-		height: calc(100vh - 0.5cm);
+		height: calc(100vh - 5mm);
+		height: calc(100svh - 5mm);
+		height: calc(100dvh - 5mm);
 		page-break-after: always;
 	}
 
@@ -466,7 +471,7 @@ footer {
 	justify-content: center;
 	align-items: center;
 
-	/* margin-right: auto; */
+	margin-right: auto;
 	width: 3ch;
 	aspect-ratio: 1;
 	border-radius: 100vh;

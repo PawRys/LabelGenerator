@@ -4,7 +4,7 @@
 	"homepage": "https://pawrys.github.io/LabelGenerator/",
 	"private": true,
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite --host",
 		"build": "vite build",
 		"deploy": "gh-pages -d dist",
 		"---": "---",
