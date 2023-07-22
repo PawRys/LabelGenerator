@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Roboto+Mono:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap');
 *,
 *::after,
 *::before {
@@ -7,7 +8,7 @@
 	color: inherit;
 	background-color: inherit;
 	padding: 0;
-	margin: 0;
+	/* margin: 0; */
 }
 
 :root {
@@ -18,5 +19,27 @@ body {
 	max-width: 96ch;
 	margin-inline: auto;
 	font-size: 18rem;
-	font-family: sans-serif;
+	font-family: 'Rajdhani', sans-serif;
+	/* font-family: 'Roboto', sans-serif; */
+	/* font-family: 'Roboto Mono', sans-serif; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	padding-block: 0.5em;
+	margin-block: 0.75em 1em;
+	font-weight: 500;
+}
+
+h1 {
+	font-size: 24rem;
+	border-bottom: solid 1px lightskyblue;
+}
+
+h2 {
+	font-size: 21rem;
 }
