@@ -189,6 +189,14 @@ function getItemGlueing(input: string): string {
 function printPage() {
 	window.print();
 }
+
+function plural(one: string, two: string, tre: string, val: number): String {
+	let result = '';
+	if (val === 1) result = one;
+	else if (val > 1 && val < 5) result = two;
+	else if (val >= 5) result = tre;
+	return result;
+}
 </script>
 
 <template>
@@ -254,11 +262,17 @@ function printPage() {
 				</form>
 			</div>
 		</section>
+
 		<template v-if="labelsStore.items.length > 0">
 			<section class="choice-break">---</section>
-			<div class="button-bar narrow-box">
-				<!-- <button class="cta" @click="$emit('printpage')">Drukuj</button> -->
-				<span class="paper-count">{{ labelsStore.count() }} stron</span>
+			<div class="button-bar --narrow-box">
+				<span class="paper-count">{{
+					`${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}`
+				}}</span>
+				<span class="paper-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
+				<span class="fake-spacer"></span>
+				<span class="fake-spacer"></span>
+				<span class="fake-spacer"></span>
 				<button class="cta" @click="printPage">Drukuj</button>
 				<button @click="labelsStore.removeAll()">Usuń wszystkie</button>
 			</div>
@@ -438,13 +452,48 @@ footer {
 .button-bar {
 	display: flex;
 	gap: 1em;
-	justify-content: right;
-	align-items: baseline;
+	justify-content: center;
+	align-items: center;
 }
 
 .paper-count {
-	font-size: 1.2em;
+	font-size: 1.5em;
 	font-weight: 500;
+}
+
+.paper-count__info {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+
+	/* margin-right: auto; */
+	width: 3ch;
+	aspect-ratio: 1;
+	border-radius: 100vh;
+	box-shadow: 0 0 0.1em steelblue;
+
+	color: steelblue;
+	/* font-weight: 500; */
+	cursor: help;
+}
+.paper-count__info:hover::after {
+	content: attr(data-tip);
+	position: absolute;
+	translate: -50% 0%;
+	z-index: 1;
+	left: 50%;
+	bottom: 150%;
+
+	padding: 0.5em;
+	width: 28ch;
+
+	border-radius: 0.5em;
+	box-shadow: 0em 0.1em 0.3em lightsteelblue;
+
+	background-color: white;
+	/* font-size: 0.9em; */
+	/* font-weight: 300; */
+	text-align: center;
 }
 
 table {
