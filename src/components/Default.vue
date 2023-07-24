@@ -162,7 +162,7 @@ function getPurifiedDescription(input: string | null): string {
 	let purifiedName: Array<string> = [];
 	for (let text of destructuredName) {
 		// Ommit junk chunks
-		if (text.match(/(edges sealed|Const|441233\d\d|\(0\)\(1\)|RAL|EXT|WD|INT|MR)/i)) continue;
+		if (text.match(/(edges sealed|Const|441233\d\d|\(1\)\(2\)|RAL|EXT|WD|INT|MR)/i)) continue;
 		// Erase junk words
 		text = text.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|CODE|\d{5,})\b/gi, '').trim();
 		purifiedName.push(text);
@@ -373,7 +373,7 @@ function plural(one: string, two: string, tre: string, val: number): String {
 		display: grid;
 		gap: 0.5cm;
 		align-self: self-end;
-		font-size: 2cm; /* Master font size for all label childs */
+		font-size: 1.8cm; /* Master font size for all label childs */
 		font-weight: 500;
 		text-align: center;
 		line-height: 1;
