@@ -196,7 +196,7 @@ function printPage() {
 function plural(one: string, two: string, tre: string, val: number): String {
 	let result = '';
 	if (val === 1) result = one;
-	else if (val > 1 && val < 5) result = two;
+	else if (val % 10 > 1 && val % 10 < 5 && (val % 100 < 10 || val % 100 > 20)) result = two;
 	else if (val >= 5) result = tre;
 	return result;
 }
@@ -353,13 +353,20 @@ function plural(one: string, two: string, tre: string, val: number): String {
 	}
 
 	.a4-paper {
+		/* outline: solid 1px red; */
+
 		display: grid;
 		gap: 1cm;
 		grid-template-rows: 1fr 1px 1fr;
 		height: calc(100vh - 5mm);
 		height: calc(100svh - 5mm);
-		height: calc(100dvh - 5mm);
-		page-break-after: always;
+		/* height: calc(100dvh - 5mm); */
+		page-break-before: always;
+		overflow: hidden;
+	}
+
+	.a4-paper:nth-of-type(1) {
+		page-break-before: avoid;
 	}
 
 	.label {
@@ -373,10 +380,10 @@ function plural(one: string, two: string, tre: string, val: number): String {
 
 	.label__item-size {
 		font-weight: 600;
-		font-size: 2.6cm;
+		font-size: 3cm;
 	}
 	.label__long-desc {
-		font-size: 1.6cm;
+		font-size: 2cm;
 		font-weight: 600;
 		white-space: pre-wrap;
 		text-align: center;
