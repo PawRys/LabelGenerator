@@ -358,8 +358,8 @@ function plural(one: string, two: string, tre: string, val: number): String {
 		display: grid;
 		gap: 1cm;
 		grid-template-rows: 1fr 1px 1fr;
-		height: calc(100vh - 5mm);
-		height: calc(100svh - 5mm);
+		height: calc(100vh - 1mm);
+		height: calc(100svh - 1mm);
 		/* height: calc(100dvh - 5mm); */
 		page-break-before: always;
 		overflow: hidden;
@@ -373,18 +373,18 @@ function plural(one: string, two: string, tre: string, val: number): String {
 		display: grid;
 		gap: 0.5cm;
 		align-self: self-end;
-		font-size: 2cm;
+		font-size: 2cm; /* Master font size for all label childs */
+		font-weight: 500;
 		text-align: center;
 		line-height: 1;
 	}
 
 	.label__item-size {
+		font-size: 1.5em;
 		font-weight: 600;
-		font-size: 3cm;
 	}
 	.label__long-desc {
-		font-size: 2cm;
-		font-weight: 600;
+		font-size: 1em;
 		white-space: pre-wrap;
 		text-align: center;
 		min-height: 1em;
@@ -398,14 +398,17 @@ function plural(one: string, two: string, tre: string, val: number): String {
 
 	.label__contract {
 		font-size: 0.5em;
+		font-weight: 400;
 	}
 	.label__pack-szie::after {
 		content: 'szt.';
 		font-size: 0.5em;
+		font-weight: 400;
 	}
 
 	.label-divider {
 		border-bottom: dashed 1px gray;
+		width: 100%;
 	}
 }
 footer {
