@@ -162,7 +162,7 @@ function getPurifiedDescription(input: string | null): string {
 	let purifiedName: Array<string> = [];
 	for (let text of destructuredName) {
 		// Ommit junk chunks
-		if (text.match(/(edges sealed|Const|441233\d\d|RAL|EXT|WD|INT|MR)/i)) continue;
+		if (text.match(/(edges sealed|Const|441233\d\d|\(0\)\(1\)|RAL|EXT|WD|INT|MR)/i)) continue;
 		// Erase junk words
 		text = text.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|CODE|\d{5,})\b/gi, '').trim();
 		purifiedName.push(text);
