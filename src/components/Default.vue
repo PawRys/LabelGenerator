@@ -165,6 +165,8 @@ function getPurifiedDescription(input: string | null): string {
 		if (text.match(/(edges sealed|Const|Spec|441233\d\d|\(1\)\(2\)|RAL|EXT|WD|INT|MR)/i)) continue;
 		// Erase junk words
 		text = text.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|CODE|\d{5,})\b/gi, '').trim();
+		// Prevent white space wrapping
+		text = text.replace(/ (I{1,2}\b)/g, ' $1');
 		purifiedName.push(text);
 	}
 	return purifiedName.join(' \n') || "it's null";
@@ -373,7 +375,7 @@ function plural(one: string, two: string, tre: string, val: number): String {
 		display: grid;
 		gap: 0.5cm;
 		align-self: self-end;
-		font-size: 1.7cm; /* Master font size for all label childs */
+		font-size: 1.8cm; /* Master font size for all label childs */
 		font-weight: 500;
 		text-align: center;
 		line-height: 1;
@@ -385,7 +387,7 @@ function plural(one: string, two: string, tre: string, val: number): String {
 	}
 	.label__long-desc {
 		font-size: 1em;
-		white-space: pre-wrap;
+		white-space: break-spaces;
 		text-align: center;
 		min-height: 1em;
 	}
