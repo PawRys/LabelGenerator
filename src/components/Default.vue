@@ -387,7 +387,7 @@ function plural(one: string, two: string, tre: string, val: number): String {
 	}
 	.label__long-desc {
 		font-size: 1em;
-		white-space: break-spaces;
+		white-space: unset;
 		text-align: center;
 		min-height: 1em;
 	}
