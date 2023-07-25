@@ -9,10 +9,6 @@ function addItem(input: Event): void {
 	const result = Object.fromEntries([...formData.entries()]);
 	labelsStore.addItem(result);
 }
-
-function removeItem(index: number): void {
-	labelsStore.removeItem(index);
-}
 </script>
 
 <template>

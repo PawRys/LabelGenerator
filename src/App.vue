@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue';
+import { useLabelsStore } from '@/stores/labels';
+const labelsStore = useLabelsStore();
 
 import InputChoice from './components/InputChoice.vue';
 import PageCount from './components/PageCount.vue';
@@ -39,11 +40,6 @@ import Print from './components/Print.vue';
 		border: 0;
 		margin: 0;
 	}
-}
-
-.divider {
-	text-align: center;
-	margin-block: 2em;
 }
 
 .narrow-box {

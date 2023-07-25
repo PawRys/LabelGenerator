@@ -13,7 +13,7 @@ function plural(one: string, two: string, tre: string, val: number): String {
 
 <template>
 	<section v-if="labelsStore.items.length > 0">
-		<div class="divider">---</div>
+		<!-- <div class="divider">---</div> -->
 		<div class="button-bar narrow-box">
 			<span class="page-count">{{
 				`${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}`
