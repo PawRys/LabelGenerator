@@ -24,6 +24,10 @@ body {
 	/* font-family: 'Roboto Mono', sans-serif; */
 }
 
+p {
+	margin-block: 0.5em;
+}
+
 h1,
 h2,
 h3,
@@ -42,4 +46,29 @@ h1 {
 
 h2 {
 	font-size: 21rem;
+}
+
+:is(button, .button) {
+	display: inline-flex;
+
+	/* margin: 0.3em; */
+	padding: 0.5em 0.8em;
+	color: midnightblue;
+	background-color: aliceblue;
+	border: none;
+	border-radius: 0.5em;
+
+	/* transition-property: all;
+	transition-duration: 300ms; */
+}
+
+:is(button, .button).cta {
+	background-color: lightsteelblue;
+	font-weight: 500;
+}
+
+:is(button, .button):hover {
+	cursor: pointer;
+	background-color: steelblue;
+	color: aliceblue;
 }
