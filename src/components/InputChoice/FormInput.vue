@@ -78,11 +78,11 @@ function addItem(input: Event): void {
 
 .form__item-size {
 	width: 100%;
-	font-size: 22rem;
+	font-size: 1.2rem;
 }
 
 .form__long-desc {
-	font-size: 22rem;
+	font-size: 1.2rem;
 }
 
 .short-fields {
