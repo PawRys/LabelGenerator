@@ -12,13 +12,13 @@
 }
 
 :root {
-	font-size: 6.25%;
+	font-size: 112.5%; /* 18px */
 }
 
 body {
 	max-width: 96ch;
 	margin-inline: auto;
-	font-size: 18rem;
+	font-size: 1rem;
 	font-family: 'Rajdhani', sans-serif;
 	/* font-family: 'Roboto', sans-serif; */
 	/* font-family: 'Roboto Mono', sans-serif; */
@@ -40,12 +40,12 @@ h6 {
 }
 
 h1 {
-	font-size: 24rem;
+	font-size: 2.4rem;
 	border-bottom: solid 1px lightskyblue;
 }
 
 h2 {
-	font-size: 21rem;
+	font-size: 2.1rem;
 }
 
 :is(button, .button) {
