@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
+import LabelForm from './InputChoice/LabelForm.vue';
+import TextInput from './InputChoice/TextInput.vue';
+
 const labelsStore = useLabelsStore();
+function logme(e: any): void {
+	console.log(e);
+}
 </script>
 <template>
 	<section>
@@ -9,14 +15,25 @@ const labelsStore = useLabelsStore();
 				v-for="({ contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 				:key="index">
 				<td>{{ index + 1 }}.</td>
-				<td>{{ itemSize }}</td>
+				<td>
+					<TextInput :index="index" :datakey="'itemSize'" />
+				</td>
 				<td class="table__long-desc">{{ longDesc }}</td>
 				<td>{{ itemGlue }}</td>
 				<td>{{ `${packsCount}x${packSize}` }}</td>
-				<td>{{ contract }}</td>
 				<td>
-					<button @click="labelsStore.removeItem(index)">Usuń</button>
+					<TextInput :index="index" :datakey="'contract'" />
 				</td>
+				<td class="button-bar">
+					<button @click="labelsStore.removeItem(index)">Usuń</button>
+					<button @click="logme(index)">Zmień</button>
+				</td>
+				<!-- <td>
+					<textarea style="width: 100%; white-space: nowrap">{{
+						`${itemSize} | ${longDesc} | ${itemGlue} | ${packsCount}x${packSize} | ${contract}`
+					}}</textarea>
+					<LabelForm /> 
+				</td> -->
 			</tr>
 		</table>
 		<hr class="divider narrow-box" />
