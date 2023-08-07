@@ -59,7 +59,10 @@ const labelsStore = useLabelsStore();
 		'B B B B B'
 		'C D D D E';
 
-	font-size: 2.5cm; /* Master font size for all label childs */
+	font-size: 3cm; /* Master font size for all label childs */
+	--fs-normal: 1em;
+	--fs-small: 0.7em;
+	--fs-smaller: 0.5em;
 	font-weight: 500;
 	text-align: center;
 	line-height: 1;
@@ -67,12 +70,12 @@ const labelsStore = useLabelsStore();
 
 .label__item-size {
 	grid-area: A;
-	font-size: 1.3em;
+	font-size: var(--fs-normal);
 	font-weight: 600;
 }
 .label__long-desc {
 	grid-area: B;
-	font-size: 0.8em;
+	font-size: var(--fs-small);
 	white-space: unset;
 	text-align: center;
 	min-height: 1em;
@@ -80,21 +83,21 @@ const labelsStore = useLabelsStore();
 
 .label__item-glue {
 	grid-area: C;
-	font-size: 0.8em;
+	font-size: var(--fs-small);
 }
 
 .label__contract {
 	grid-area: D;
-	font-size: 0.4em;
+	font-size: calc(var(--fs-small) / 2);
 	font-weight: 400;
 }
 .label__pack-size {
 	grid-area: E;
-	font-size: 0.8em;
+	font-size: var(--fs-small);
 }
 .label__pack-size::after {
 	content: 'szt.';
-	font-size: 0.5em;
+	font-size: var(--fs-smaller);
 	font-weight: 400;
 }
 </style>
