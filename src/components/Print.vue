@@ -60,9 +60,9 @@ const labelsStore = useLabelsStore();
 		'C D D D E';
 
 	font-size: 3cm; /* Master font size for all label childs */
-	--fs-normal: 1em;
-	--fs-small: 0.7em;
-	--fs-smaller: 0.5em;
+	--fs-normal: 3cm;
+	--fs-small: calc(var(--fs-normal) * 0.64);
+	--fs-smaller: calc(var(--fs-small) * 0.5);
 	font-weight: 500;
 	text-align: center;
 	line-height: 1;
@@ -88,7 +88,7 @@ const labelsStore = useLabelsStore();
 
 .label__contract {
 	grid-area: D;
-	font-size: calc(var(--fs-small) / 2);
+	font-size: var(--fs-smaller);
 	font-weight: 400;
 }
 .label__pack-size {
