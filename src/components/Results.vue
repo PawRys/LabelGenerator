@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
-import LabelForm from './InputChoice/LabelForm.vue';
-import TextInput from './InputChoice/TextInput.vue';
+import SmartInput from './InputChoice/SmartInput.vue';
 
 const labelsStore = useLabelsStore();
 function logme(e: any): void {
@@ -16,24 +15,25 @@ function logme(e: any): void {
 				:key="index">
 				<td>{{ index + 1 }}.</td>
 				<td>
-					<TextInput :index="index" :datakey="'itemSize'" />
+					<SmartInput :label-index="index" :label-prop="'itemSize'" />
 				</td>
-				<td class="table__long-desc">{{ longDesc }}</td>
-				<td>{{ itemGlue }}</td>
-				<td>{{ `${packsCount}x${packSize}` }}</td>
+				<td class="table__long-desc">
+					<SmartInput :label-index="index" :label-prop="'longDesc'" />
+				</td>
 				<td>
-					<TextInput :index="index" :datakey="'contract'" />
+					<SmartInput :label-index="index" :label-prop="'itemGlue'" />
+				</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'packsCount'" />x<SmartInput
+						:label-index="index"
+						:label-prop="'packSize'" />
+				</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'contract'" />
 				</td>
 				<td class="button-bar">
 					<button @click="labelsStore.removeItem(index)">Usuń</button>
-					<button @click="logme(index)">Zmień</button>
 				</td>
-				<!-- <td>
-					<textarea style="width: 100%; white-space: nowrap">{{
-						`${itemSize} | ${longDesc} | ${itemGlue} | ${packsCount}x${packSize} | ${contract}`
-					}}</textarea>
-					<LabelForm /> 
-				</td> -->
 			</tr>
 		</table>
 		<hr class="divider narrow-box" />

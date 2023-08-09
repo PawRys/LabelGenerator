@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useLabelsStore } from '@/stores/labels';
+import { useLabelsStore, type LabelInterface } from '@/stores/labels';
 const labelsStore = useLabelsStore();
 
-function addItem(input: Event): void {
-	input.preventDefault();
-	const form = input.target as HTMLFormElement;
+function addItem(event: Event): void {
+	event.preventDefault();
+	const form = event.target as HTMLFormElement;
 	const formData = new FormData(form);
-	const result = Object.fromEntries([...formData.entries()]);
-	labelsStore.addItem(result);
+	const result = Object.fromEntries([...formData.entries()]) as unknown;
+	labelsStore.addItem(result as LabelInterface);
 }
 </script>
 
