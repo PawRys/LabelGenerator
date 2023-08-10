@@ -1,19 +1,32 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
+import SmartInput from './InputChoice/SmartInput.vue';
+
 const labelsStore = useLabelsStore();
 </script>
+
 <template>
 	<section>
 		<table>
-			<tr
-				v-for="({ contract , longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
-				:key="index">
+			<tr v-for="({}, index) in labelsStore.items" :key="index">
 				<td>{{ index + 1 }}.</td>
-				<td>{{ itemSize }}</td>
-				<td class="table__long-desc">{{ longDesc }}</td>
-				<td>{{ itemGlue }}</td>
-				<td>{{ `${packsCount}x${packSize}` }}</td>
-				<td>{{ contract }}</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'itemSize'" />
+				</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'longDesc'" class="long-width" />
+				</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'itemGlue'" class="short-width" />
+				</td>
+				<td class="nowrap">
+					<SmartInput :label-index="index" :label-prop="'packsCount'" class="short-width" />
+					<span>x</span>
+					<SmartInput :label-index="index" :label-prop="'packSize'" class="short-width" />
+				</td>
+				<td>
+					<SmartInput :label-index="index" :label-prop="'contract'" />
+				</td>
 				<td>
 					<button @click="labelsStore.removeItem(index)">Usuń</button>
 				</td>
@@ -31,6 +44,10 @@ table {
 	border-spacing: 1em;
 }
 
+td {
+	text-align: center;
+}
+
 .table__long-desc {
 	white-space: pre-wrap;
 	text-align: center;
@@ -40,5 +57,12 @@ table {
 	margin-block: 2em 4em;
 	border: none;
 	border-bottom: dotted 1px lightsteelblue;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+.short-width {
+	width: 4ch;
 }
 </style>
