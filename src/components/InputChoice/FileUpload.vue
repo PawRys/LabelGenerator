@@ -3,7 +3,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.entry';
 import type { TextItem } from 'pdfjs-dist/types/src/display/api';
 
-import { useLabelsStore } from '@/stores/labels';
+import { useLabelsStore, type LabelInterface } from '@/stores/labels';
 const labelsStore = useLabelsStore();
 
 const regExp_ItemSize: RegExp = /\b\d+x\d+x\d+\b/i; // 12x1250x2500
@@ -12,14 +12,14 @@ const regExp_ItemPacking: RegExp = /\b\d+x\d+\b/i; // 16x50
 const regExp_ItemGlueing: RegExp = /\b(EXT|WD|INT|MR)\b/i;
 const regExp_ItemDescription: RegExp = /\b(Birch plywood|EXT|WD|INT|MR)\b/i;
 
-interface Results {
-	contract: string;
-	longDesc: string;
-	itemSize: string;
-	itemGlue: string;
-	packsCount: string;
-	packSize: string;
-}
+// interface LabelInterface {
+// 	contract: string;
+// 	longDesc: string;
+// 	itemSize: string;
+// 	itemGlue: string;
+// 	packsCount: string;
+// 	packSize: string;
+// }
 
 async function addItemsFromFiles(event: Event): Promise<void> {
 	const target = event.target as HTMLInputElement;
@@ -29,8 +29,7 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 	const dataToDisplay = buildDataToDisplay(usefullData);
 
 	labelsStore.addItem(...dataToDisplay);
-	/**reset input */
-	target.value = '';
+	target.value = ''; /**reset input */
 
 	// console.log('extractedData: ', extractedData);
 	// console.log('usefullData: ', usefullData);
@@ -43,7 +42,7 @@ async function extractDataFromPDF(files: FileList): Promise<string[]> {
 	for (let fileNo = 0; fileNo < filesCount; fileNo++) {
 		const file = files[fileNo];
 		if (file.type !== 'application/pdf') {
-			console.log('Invalid file type:', file.type, file);
+			console.log(`Invalid file type: ${file.type}`, file);
 			continue;
 		}
 		const arrayBuffer = await file.arrayBuffer();
@@ -72,6 +71,7 @@ function filterUselessData(input: String[]): Array<String> {
 		let lastOutput = output[output.length - 1] as string;
 		let currentItem = input[i] as string;
 		let testSum = 0;
+
 		testSum += regExp_ItemSize.test(currentItem) ? 1 : 0;
 		testSum += regExp_ContarctNo.test(currentItem) ? 1 : 0;
 		testSum += regExp_ItemPacking.test(currentItem) ? 1 : 0;
@@ -87,7 +87,7 @@ function filterUselessData(input: String[]): Array<String> {
 	return output;
 }
 
-function buildDataToDisplay(items: String[]): Results[] {
+function buildDataToDisplay(items: String[]): LabelInterface[] {
 	let result = [];
 	const itemsLength = items.length;
 	let itemSize: string = '';
@@ -151,7 +151,9 @@ function getPurifiedDescription(input: string | null): string {
 		// Ommit junk chunks
 		if (text.match(/(edges sealed|Const|Spec|441233\d\d|\(1\)\(2\)|RAL|EXT|WD|INT|MR)/i)) continue;
 		// Erase junk words
-		text = text.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|CODE|\d{5,})\b/gi, '').trim();
+		text = text
+			.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|COMPOSITE|CODE|WPC|SP1|1F45M|R7010|\d{5,})\b/gi, '')
+			.trim();
 		// Prevent white space wrapping
 		text = text.replace(/ (I{1,2}\b)/g, ' $1');
 		purifiedName.push(text);
