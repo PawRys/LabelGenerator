@@ -3,30 +3,26 @@ import { useLabelsStore } from '@/stores/labels';
 import SmartInput from './InputChoice/SmartInput.vue';
 
 const labelsStore = useLabelsStore();
-function logme(e: any): void {
-	console.log(e);
-}
 </script>
+
 <template>
 	<section>
 		<table>
-			<tr
-				v-for="({ contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
-				:key="index">
+			<tr v-for="({}, index) in labelsStore.items" :key="index">
 				<td>{{ index + 1 }}.</td>
 				<td>
 					<SmartInput :label-index="index" :label-prop="'itemSize'" />
 				</td>
-				<td class="table__long-desc">
+				<td>
 					<SmartInput :label-index="index" :label-prop="'longDesc'" />
 				</td>
 				<td>
 					<SmartInput :label-index="index" :label-prop="'itemGlue'" />
 				</td>
 				<td>
-					<SmartInput :label-index="index" :label-prop="'packsCount'" />x<SmartInput
-						:label-index="index"
-						:label-prop="'packSize'" />
+					<SmartInput :label-index="index" :label-prop="'packsCount'" />
+					<span>x</span>
+					<SmartInput :label-index="index" :label-prop="'packSize'" />
 				</td>
 				<td>
 					<SmartInput :label-index="index" :label-prop="'contract'" />

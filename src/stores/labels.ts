@@ -19,12 +19,13 @@ export const useLabelsStore = defineStore('labels', () => {
 		}
 	}
 
-	function updateItem(index: number, datakey: keyof LabelInterface, data: string) {
+	function updateItem(index: number, labelProperty: keyof LabelInterface, dataToSave: string) {
 		const itemToUpdate = items[index];
 		if (itemToUpdate) {
-			itemToUpdate[datakey] = data;
+			itemToUpdate[labelProperty] = dataToSave;
 		}
 	}
+
 	function removeItem(index: number) {
 		items.splice(index, 1);
 	}

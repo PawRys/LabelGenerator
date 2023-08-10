@@ -27,7 +27,6 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 	const extractedData = await extractDataFromPDF(files);
 	const usefullData = filterUselessData(extractedData);
 	const dataToDisplay = buildDataToDisplay(usefullData);
-	console.log(dataToDisplay);
 
 	labelsStore.addItem(...dataToDisplay);
 	/**reset input */

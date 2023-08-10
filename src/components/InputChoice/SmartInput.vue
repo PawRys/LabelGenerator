@@ -8,24 +8,25 @@ interface MountedHTMLElement {
 
 const labelsStore = useLabelsStore();
 const props = defineProps({ labelIndex: Number, labelProp: String });
-const index = props.labelIndex || 0;
+const labelIndex = props.labelIndex || 0;
 const labelProp = props.labelProp || '';
 
 const editing = ref(false);
+
 const labelPropValue = computed(() => {
-	const labelIdx = labelsStore.items[index];
-	if (labelIdx && labelProp) {
-		return labelIdx[labelProp as keyof typeof labelIdx]; // Use keyof typeof -chatgpt
+	const labelIdx = labelsStore.items[labelIndex];
+	if (labelIndex !== undefined && labelProp !== '') {
+		return labelIdx[labelProp as keyof typeof labelIdx];
 	}
-	return '';
+	return 'ERROR';
 });
 
 function updateItem(event: FocusEvent): void {
 	const target = event.target as HTMLInputElement;
 	const value = target.value;
 
-	if (index !== undefined && labelProp !== '') {
-		labelsStore.updateItem(index, labelProp as keyof LabelInterface, value);
+	if (labelIndex !== undefined && labelProp !== '') {
+		labelsStore.updateItem(labelIndex, labelProp as keyof LabelInterface, value);
 	}
 	editing.value = false;
 }
@@ -33,12 +34,12 @@ function updateItem(event: FocusEvent): void {
 
 <template>
 	<div class="smart-input">
-		<span v-if="!editing" class="smart-input__label" @focus="editing = true" contenteditable="true">{{
+		<span v-if="!editing" class="smart-input__show-value" @focus="editing = true" contenteditable="true">{{
 			labelPropValue
 		}}</span>
 		<input
 			v-if="editing"
-			class="smart-input__input"
+			class="smart-input__edit-value"
 			type="text"
 			:value="labelPropValue"
 			@vue:mounted="({ el }:MountedHTMLElement) => el.focus()"
@@ -52,17 +53,17 @@ function updateItem(event: FocusEvent): void {
 }
 
 .smart-input {
-	display: inline-flex;
+	display: inline-grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 100%;
 
-	width: fit-content;
+	width: 100%;
 }
 .smart-input > * {
 	width: 100%;
 }
 
-.smart-input__label {
+.smart-input__show-value {
 	border: dotted 1px silver;
 }
 </style>
