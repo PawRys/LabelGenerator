@@ -14,20 +14,20 @@ const labelsStore = useLabelsStore();
 					<SmartInput :label-index="index" :label-prop="'itemSize'" />
 				</td>
 				<td>
-					<SmartInput :label-index="index" :label-prop="'longDesc'" />
+					<SmartInput :label-index="index" :label-prop="'longDesc'" class="long-width" />
 				</td>
 				<td>
-					<SmartInput :label-index="index" :label-prop="'itemGlue'" />
+					<SmartInput :label-index="index" :label-prop="'itemGlue'" class="short-width" />
 				</td>
-				<td>
-					<SmartInput :label-index="index" :label-prop="'packsCount'" />
+				<td class="nowrap">
+					<SmartInput :label-index="index" :label-prop="'packsCount'" class="short-width" />
 					<span>x</span>
-					<SmartInput :label-index="index" :label-prop="'packSize'" />
+					<SmartInput :label-index="index" :label-prop="'packSize'" class="short-width" />
 				</td>
 				<td>
 					<SmartInput :label-index="index" :label-prop="'contract'" />
 				</td>
-				<td class="button-bar">
+				<td>
 					<button @click="labelsStore.removeItem(index)">Usuń</button>
 				</td>
 			</tr>
@@ -44,6 +44,10 @@ table {
 	border-spacing: 1em;
 }
 
+td {
+	text-align: center;
+}
+
 .table__long-desc {
 	white-space: pre-wrap;
 	text-align: center;
@@ -53,5 +57,12 @@ table {
 	margin-block: 2em 4em;
 	border: none;
 	border-bottom: dotted 1px lightsteelblue;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+.short-width {
+	width: 4ch;
 }
 </style>

@@ -34,6 +34,7 @@ function updateItem(event: FocusEvent): void {
 
 <template>
 	<div class="smart-input">
+		<span class="smart-input__placeholder">{{ labelPropValue }}</span>
 		<span v-if="!editing" class="smart-input__show-value" @focus="editing = true" contenteditable="true">{{
 			labelPropValue
 		}}</span>
@@ -48,22 +49,26 @@ function updateItem(event: FocusEvent): void {
 </template>
 
 <style scoped>
-.visualy-hidden {
-	display: none;
-}
-
 .smart-input {
 	display: inline-grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 100%;
-
 	width: 100%;
 }
 .smart-input > * {
 	width: 100%;
+	padding: 0.1rem;
+	border: dotted 1px silver;
+	background-color: white;
 }
 
-.smart-input__show-value {
-	border: dotted 1px silver;
+.smart-input__placeholder {
+	opacity: 0;
+	visibility: hidden;
+}
+.smart-input__show-value,
+.smart-input__edit-value {
+	position: absolute;
+	inset: 0;
 }
 </style>
