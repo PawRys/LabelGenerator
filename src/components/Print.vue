@@ -63,7 +63,7 @@ const labelsStore = useLabelsStore();
 	--fs-normal: 3cm;
 	--fs-small: calc(var(--fs-normal) * 0.64);
 	--fs-smaller: calc(var(--fs-small) * 0.5);
-	font-weight: 500;
+	font-weight: 600;
 	text-align: center;
 	line-height: 1;
 }

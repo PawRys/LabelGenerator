@@ -6,7 +6,7 @@ const labelsStore = useLabelsStore();
 	<section>
 		<table>
 			<tr
-				v-for="({ contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
+				v-for="({ contract , longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 				:key="index">
 				<td>{{ index + 1 }}.</td>
 				<td>{{ itemSize }}</td>
