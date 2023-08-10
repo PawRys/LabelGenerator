@@ -21,7 +21,7 @@ import Print from './components/Print.vue';
 <style>
 @page {
 	size: 210mm 297mm;
-	/* margin: 0; */
+	margin: 10mm;
 }
 .printme {
 	display: none;

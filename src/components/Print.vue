@@ -54,10 +54,11 @@ const labelsStore = useLabelsStore();
 	gap: 0.5cm;
 	align-self: self-end;
 	align-items: baseline;
+	grid-template-columns: auto 1fr auto;
 	grid-template-areas:
-		'A A A A A'
-		'B B B B B'
-		'C D D D E';
+		'A A A'
+		'B B B'
+		'C D E';
 
 	font-size: 3cm; /* Master font size for all label childs */
 	--fs-normal: 3cm;
