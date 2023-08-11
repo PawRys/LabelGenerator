@@ -152,7 +152,7 @@ function getPurifiedDescription(input: string | null): string {
 		if (text.match(/(edges sealed|Const|Spec|441233\d\d|\(1\)\(2\)|RAL|EXT|WD|INT|MR)/i)) continue;
 		// Erase junk words
 		text = text
-			.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|COMPOSITE|CODE|WPC|SP1|1F45M|R7010| (without *)|\d{5,})\b/gi, '')
+			.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|COMPOSITE|CODE|WPC|SP1|1F45M|R7010|without|\d{5,})\b/gi, '')
 			.trim();
 		// Prevent white space wrapping
 		text = text.replace(/ (I{1,2}\b)/g, ' $1');
