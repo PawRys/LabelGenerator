@@ -34,7 +34,7 @@ function updateItem(event: FocusEvent): void {
 
 <template>
 	<div class="smart-input">
-		<span class="smart-input__placeholder">{{ labelPropValue }}</span>
+		<span class="smart-input__placeholder">{{ `${labelPropValue ? labelPropValue : ' '}` }}</span>
 		<span v-if="!editing" class="smart-input__show-value" @focus="editing = true" contenteditable="true">{{
 			labelPropValue
 		}}</span>
