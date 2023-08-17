@@ -7,10 +7,7 @@ function addItem(input: Event): void {
 	const form = input.target as HTMLFormElement;
 	const formData = new FormData(form);
 	const result = Object.fromEntries([...formData.entries()]) as unknown;
-	const stringifiedResult = JSON.stringify(result);
-	const finalResult = JSON.parse(stringifiedResult.replace(/(W|T|F) (I{1,2})\b/g, '$1 $2'));
-
-	labelsStore.addItem(finalResult as LabelInterface);
+	labelsStore.addItem(result as LabelInterface);
 }
 </script>
 

@@ -15,14 +15,17 @@ export const useLabelsStore = defineStore('labels', () => {
 
 	function addItem(...args: LabelInterface[]) {
 		for (const item of args) {
-			items.push(item);
+			const stringifiedResult = JSON.stringify(item);
+			const nowrapResult = nowrap(stringifiedResult);
+			const finalResult = JSON.parse(nowrapResult);
+			items.push(finalResult);
 		}
 	}
 
-	function updateItem(index: number, labelProperty: keyof LabelInterface, dataToSave: string) {
+	function updateItem(index: number, property: keyof LabelInterface, dataToSave: string) {
 		const itemToUpdate = items[index];
 		if (itemToUpdate) {
-			itemToUpdate[labelProperty] = dataToSave;
+			itemToUpdate[property] = nowrap(dataToSave);
 		}
 	}
 
@@ -40,3 +43,7 @@ export const useLabelsStore = defineStore('labels', () => {
 
 	return { items, addItem, updateItem, removeItem, removeAll, count };
 });
+
+function nowrap(text: string): string {
+	return text.replace(/(W|T|F) (I{1,2})\b/g, '$1 $2');
+}
