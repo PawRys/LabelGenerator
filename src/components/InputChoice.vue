@@ -3,18 +3,24 @@ import { ref } from 'vue';
 import AddByUpload from './InputChoice/AddByUpload.vue';
 import AddByForm from './InputChoice/AddByForm.vue';
 
-const currentComp = ref('AddByUpload');
 const components: any = { AddByUpload, AddByForm };
+const currentComp = ref('AddByUpload');
+const items = [
+	{ label: 'Wybierz pliki z komputera', comp: 'AddByUpload' },
+	{ label: 'Dodaj przez formularz', comp: 'AddByForm' },
+];
 </script>
 
 <template>
 	<section class="choice">
 		<menu class="choice-menu">
-			<li class="choose-item" :class="{ active: currentComp === 'AddByUpload' }" @click="currentComp = 'AddByUpload'">
-				Wybierz pliki z komputera
-			</li>
-			<li class="choose-item" :class="{ active: currentComp === 'AddByForm' }" @click="currentComp = 'AddByForm'">
-				Dodaj przez formularz
+			<li
+				v-for="(item, index) in items"
+				:key="index"
+				class="choose-item"
+				:class="{ active: currentComp === item.comp }"
+				@click="currentComp = item.comp">
+				{{ item.label }}
 			</li>
 		</menu>
 		<component class="" :is="components[currentComp]"></component>
