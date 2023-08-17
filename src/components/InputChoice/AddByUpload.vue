@@ -155,7 +155,7 @@ function getPurifiedDescription(input: string | null): string {
 			.replace(/\b(Birch|plywood|RIGA|MEL|TEX|FORM|PLY|COMPOSITE|CODE|WPC|SP1|1F45M|R7010|without|\d{5,})\b/gi, '')
 			.trim();
 		// Prevent white space wrapping
-		text = text.replace(/ (I{1,2}\b)/g, ' $1');
+		text = text.replace(/(W|T|F) (I{1,2})\b/g, '$1 $2');
 		purifiedName.push(text);
 	}
 	return purifiedName.join(' \n') || "it's null";

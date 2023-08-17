@@ -67,7 +67,7 @@ function updateItem(event: FocusEvent): void {
 	visibility: hidden;
 }
 .smart-input__placeholder::after {
-	content: ' ';
+	content: '        ';
 }
 .smart-input__show-value,
 .smart-input__edit-value {
