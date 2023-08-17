@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import FileUpload from './InputChoice/FileUpload.vue';
-import FormInput from './InputChoice/FormInput.vue';
+import AddByUpload from './InputChoice/AddByUpload.vue';
+import AddByForm from './InputChoice/AddByForm.vue';
 
-const currentComp = ref('FileUpload');
-const components: any = { FileUpload, FormInput };
+const currentComp = ref('AddByUpload');
+const components: any = { AddByUpload, AddByForm };
 </script>
 
 <template>
 	<section class="choice">
 		<menu class="choice-menu">
-			<li class="choose-item" :class="{ active: currentComp === 'FileUpload' }" @click="currentComp = 'FileUpload'">
+			<li class="choose-item" :class="{ active: currentComp === 'AddByUpload' }" @click="currentComp = 'AddByUpload'">
 				Wybierz pliki z komputera
 			</li>
-			<li class="choose-item" :class="{ active: currentComp === 'FormInput' }" @click="currentComp = 'FormInput'">
+			<li class="choose-item" :class="{ active: currentComp === 'AddByForm' }" @click="currentComp = 'AddByForm'">
 				Dodaj przez formularz
 			</li>
 		</menu>
