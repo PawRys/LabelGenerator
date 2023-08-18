@@ -45,5 +45,5 @@ export const useLabelsStore = defineStore('labels', () => {
 });
 
 function nowrap(text: string): string {
-	return text.replace(/(W|T|F) (I{1,2})\b/g, '$1 $2');
+	return text.replace(/\b(\w+) (\w+)\/(\w+) (\w+)\b/g, '$1 $2/$3 $4');
 }
