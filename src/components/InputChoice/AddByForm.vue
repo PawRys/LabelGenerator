@@ -47,7 +47,7 @@ function addItem(input: Event): void {
 						required />
 					<span>szt.</span>
 				</section>
-				<input type="text" name="contract" class="contractNo long-input" placeholder="klient" autocomplete="on" />
+				<input type="text" name="contract" class="contractNo long-input" placeholder="mini opis" />
 				<div class="button-bar">
 					<button type="reset">Wyczyść formularz</button>
 					<button type="submit" class="cta">Dodaj etykietę</button>
