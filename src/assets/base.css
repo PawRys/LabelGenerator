@@ -16,6 +16,7 @@
 }
 
 body {
+	padding-inline: 1ch;
 	max-width: 96ch;
 	margin-inline: auto;
 	font-size: 1rem;
