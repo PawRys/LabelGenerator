@@ -14,21 +14,15 @@ function addItem(input: Event): void {
 <template>
 	<section>
 		<div class="narrow-box">
-			<form class="add-item-form" @submit.prevent="addItem">
+			<form class="add-item-form" @submit.prevent="addItem" autocomplete="on">
 				<input
 					type="text"
 					name="itemSize"
 					class="form__item-size long-input"
 					placeholder="format"
 					pattern="\d+([,.]\d)?x\d+x\d+"
-					required
-					autocomplete="on" />
-				<textarea
-					type="text"
-					name="longDesc"
-					class="form__long-desc long-input"
-					placeholder="klasa"
-					autocomplete="on"></textarea>
+					required />
+				<textarea type="text" name="longDesc" class="form__long-desc long-input" placeholder="klasa"></textarea>
 				<section class="short-fields">
 					<select name="itemGlue" class="form__item-glue short-input" required>
 						<option value="EXT">EXT</option>
