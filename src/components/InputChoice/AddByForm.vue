@@ -18,36 +18,32 @@ function addItem(input: Event): void {
 				<input
 					type="text"
 					name="itemSize"
-					class="form__item-size long-input"
+					class="item-size"
 					placeholder="format"
 					pattern="\d+([,.]\d)?x\d+x\d+"
 					required />
-				<textarea type="text" name="longDesc" class="form__long-desc long-input" placeholder="klasa"></textarea>
-				<section class="short-fields">
-					<select name="itemGlue" class="form__item-glue short-input" required>
+
+				<textarea type="text" name="longDesc" class="long-desc" placeholder="klasa"></textarea>
+
+				<section class="inputs-in-row">
+					<select name="itemGlue" class="item-glue" required>
 						<option value="EXT">EXT</option>
 						<option value="WD">WD</option>
 						<option value="INT">INT</option>
 						<option value="MR">MR</option>
 					</select>
-					<input
-						type="number"
-						name="packsCount"
-						class="form__packsCount short-input"
-						placeholder="paczki"
-						min="1"
-						required />
+
+					<input type="number" name="packsCount" class="packsCount" placeholder="paczki" min="1" required />
+
 					<span>x</span>
-					<input
-						type="number"
-						name="packSize"
-						class="form__pack-size short-input"
-						placeholder="sztuki"
-						min="0"
-						required />
+
+					<input type="number" name="packSize" class="pack-size" placeholder="sztuki" min="0" required />
+
 					<span>szt.</span>
 				</section>
-				<input type="text" name="contract" class="contractNo long-input" placeholder="mini opis" />
+
+				<input type="text" name="contract" class="contractNo" placeholder="mini opis" />
+
 				<div class="button-bar">
 					<button type="reset">Wyczyść formularz</button>
 					<button type="submit" class="cta">Dodaj etykietę</button>
@@ -59,8 +55,7 @@ function addItem(input: Event): void {
 
 <style scoped>
 .add-item-form {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	gap: 1em;
 }
 
@@ -70,27 +65,27 @@ function addItem(input: Event): void {
 	text-align: center;
 }
 
-.form__item-size {
+.item-size {
 	width: 100%;
 	font-size: 1.2rem;
 }
 
-.form__long-desc {
+.long-desc {
 	font-size: 1.2rem;
 }
 
-.short-fields {
+.item-glue {
+	margin-right: auto;
+}
+
+.inputs-in-row {
 	display: flex;
 	gap: 0.5em;
 	align-items: center;
 	border: none;
 }
 
-.short-input {
+.inputs-in-row :where(input, select, textarea) {
 	width: 10ch;
-}
-
-.form__item-glue {
-	margin-right: auto;
 }
 </style>
