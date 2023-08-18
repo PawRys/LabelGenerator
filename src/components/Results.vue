@@ -21,7 +21,7 @@ const labelsStore = useLabelsStore();
 				</td>
 				<td class="nowrap">
 					<SmartInput :label-index="index" :label-prop="'packsCount'" class="short-width" />
-					<span>x</span>
+					<span> x </span>
 					<SmartInput :label-index="index" :label-prop="'packSize'" class="short-width" />
 				</td>
 				<td>
