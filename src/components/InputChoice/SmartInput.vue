@@ -2,16 +2,10 @@
 import { ref, computed } from 'vue';
 import { useLabelsStore, type LabelInterface } from '@/stores/labels';
 
-interface MountedHTMLElement {
-	el: HTMLElement;
-}
-
 const labelsStore = useLabelsStore();
 const props = defineProps({ labelIndex: Number, labelProp: String });
 const labelIndex = props.labelIndex || 0;
 const labelProp = props.labelProp || '';
-
-const editing = ref(false);
 
 const labelPropValue = computed(() => {
 	const labelIdx = labelsStore.items[labelIndex];
@@ -21,30 +15,19 @@ const labelPropValue = computed(() => {
 	return 'ERROR';
 });
 
-function updateItem(event: FocusEvent): void {
+function updateItem(event: Event): void {
 	const target = event.target as HTMLInputElement;
 	const value = target.value;
-
 	if (labelIndex !== undefined && labelProp !== '') {
 		labelsStore.updateItem(labelIndex, labelProp as keyof LabelInterface, value);
 	}
-	editing.value = false;
 }
 </script>
 
 <template>
 	<div class="smart-input">
-		<span class="smart-input__placeholder">{{ labelPropValue }}</span>
-		<span v-if="!editing" class="smart-input__show-value" @focus="editing = true" contenteditable="true">{{
-			labelPropValue
-		}}</span>
-		<input
-			v-if="editing"
-			class="smart-input__edit-value"
-			type="text"
-			:value="labelPropValue"
-			@vue:mounted="({ el }:MountedHTMLElement) => el.focus()"
-			@blur="updateItem" />
+		<span class="size-holder">{{ labelPropValue }}</span>
+		<input class="size-filler" type="text" :value="labelPropValue" @blur="updateItem" @keyup="updateItem" />
 	</div>
 </template>
 
@@ -60,17 +43,17 @@ function updateItem(event: FocusEvent): void {
 	padding: 0.1rem;
 	border: dotted 1px silver;
 	background-color: white;
+	text-align: center;
 }
 
-.smart-input__placeholder {
-	opacity: 0;
+.size-holder {
 	visibility: hidden;
 }
-.smart-input__placeholder::after {
-	content: '        ';
+.size-holder:empty::before {
+	/*  if input has no value, hold size of few hard-space */
+	content: '  ';
 }
-.smart-input__show-value,
-.smart-input__edit-value {
+.size-filler {
 	position: absolute;
 	inset: 0;
 }
