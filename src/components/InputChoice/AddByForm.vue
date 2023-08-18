@@ -15,34 +15,24 @@ function addItem(input: Event): void {
 	<section>
 		<div class="narrow-box">
 			<form class="add-item-form" @submit.prevent="addItem" autocomplete="on">
-				<input
-					type="text"
-					name="itemSize"
-					class="item-size"
-					placeholder="format"
-					pattern="\d+([,.]\d)?x\d+x\d+"
-					required />
-
-				<textarea type="text" name="longDesc" class="long-desc" placeholder="klasa"></textarea>
+				<input type="text" name="itemSize" class="item-size" placeholder="format" />
+				<textarea name="longDesc" class="long-desc" placeholder="klasa"></textarea>
 
 				<section class="inputs-in-row">
-					<select name="itemGlue" class="item-glue" required>
+					<select name="itemGlue" class="item-glue">
 						<option value="EXT">EXT</option>
 						<option value="WD">WD</option>
 						<option value="INT">INT</option>
 						<option value="MR">MR</option>
 					</select>
 
-					<input type="number" name="packsCount" class="packsCount" placeholder="paczki" min="1" required />
-
+					<input type="number" name="packsCount" class="packs-count" placeholder="paczki" min="1" value="1" />
 					<span>x</span>
-
-					<input type="number" name="packSize" class="pack-size" placeholder="sztuki" min="0" required />
-
+					<input type="number" name="packSize" class="pack-size" placeholder="sztuki" min="0" value="0" />
 					<span>szt.</span>
 				</section>
 
-				<input type="text" name="contract" class="contractNo" placeholder="mini opis" />
+				<input type="text" name="contract" class="contract-number" placeholder="mini opis" />
 
 				<div class="button-bar">
 					<button type="reset">Wyczyść formularz</button>
@@ -86,6 +76,6 @@ function addItem(input: Event): void {
 }
 
 .inputs-in-row :where(input, select, textarea) {
-	width: 10ch;
+	width: 8ch;
 }
 </style>
