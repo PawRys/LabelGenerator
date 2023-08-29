@@ -77,7 +77,7 @@ const labelsStore = useLabelsStore();
 .label__long-desc {
 	grid-area: B;
 	font-size: var(--fs-small);
-	white-space: unset;
+	white-space: pre-line;
 	text-align: center;
 	min-height: 1em;
 }
