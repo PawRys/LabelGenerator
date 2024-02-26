@@ -13,7 +13,7 @@ const labelsStore = useLabelsStore();
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
 					<span class="label__contract">{{ contract }}</span>
-					<span class="label__pack-size">{{ packSize }}</span>
+					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 
 				<hr class="label-divider" />
@@ -23,7 +23,7 @@ const labelsStore = useLabelsStore();
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
 					<span class="label__contract">{{ contract }}</span>
-					<span class="label__pack-size">{{ packSize }}</span>
+					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 			</section>
 		</template>
