@@ -157,7 +157,7 @@ function getPurifiedDescription(input: string | null): string {
 			.trim();
 		purifiedName.push(text);
 	}
-	return purifiedName.join(' \n') || "it's null";
+	return purifiedName.join(' ') || "it's null";
 }
 
 function getPurifiedSize(input: string): string {

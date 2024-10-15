@@ -13,7 +13,7 @@ const labelsStore = useLabelsStore();
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
 					<span class="label__contract">{{ contract }}</span>
-					<span class="label__pack-size">{{ packSize }}</span>
+					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 
 				<hr class="label-divider" />
@@ -23,7 +23,7 @@ const labelsStore = useLabelsStore();
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
 					<span class="label__contract">{{ contract }}</span>
-					<span class="label__pack-size">{{ packSize }}</span>
+					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 			</section>
 		</template>
@@ -62,7 +62,7 @@ const labelsStore = useLabelsStore();
 
 	font-size: 3cm; /* Master font size for all label childs */
 	--fs-normal: 3cm;
-	--fs-small: calc(var(--fs-normal) * 0.64);
+	--fs-small: calc(var(--fs-normal) * 0.8);
 	--fs-smaller: calc(var(--fs-small) * 0.5);
 	font-weight: 600;
 	text-align: center;
@@ -77,7 +77,7 @@ const labelsStore = useLabelsStore();
 .label__long-desc {
 	grid-area: B;
 	font-size: var(--fs-small);
-	white-space: unset;
+	white-space: pre-line;
 	text-align: center;
 	min-height: 1em;
 }

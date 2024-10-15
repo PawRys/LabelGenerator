@@ -15,11 +15,12 @@ function addItem(input: Event): void {
 	<section>
 		<div class="narrow-box">
 			<form class="add-item-form" @submit.prevent="addItem" autocomplete="on">
-				<input type="text" name="itemSize" class="item-size" placeholder="format" />
-				<textarea name="longDesc" class="long-desc" placeholder="klasa"></textarea>
+				<input type="text" name="itemSize" class="item-size" placeholder="duży tekst" />
+				<textarea name="longDesc" class="long-desc" placeholder="średni tekst"></textarea>
 
 				<section class="inputs-in-row">
 					<select name="itemGlue" class="item-glue">
+						<option value="">Klej</option>
 						<option value="EXT">EXT</option>
 						<option value="WD">WD</option>
 						<option value="INT">INT</option>
@@ -32,7 +33,7 @@ function addItem(input: Event): void {
 					<span>szt.</span>
 				</section>
 
-				<input type="text" name="contract" class="contract-number" placeholder="mini opis" />
+				<input type="text" name="contract" class="contract-number" placeholder="mały tekst" />
 
 				<div class="button-bar">
 					<button type="reset">Wyczyść formularz</button>
