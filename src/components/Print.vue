@@ -64,7 +64,7 @@ const labelsStore = useLabelsStore();
 	--fs-normal: 3cm;
 	--fs-small: calc(var(--fs-normal) * 0.8);
 	--fs-smaller: calc(var(--fs-small) * 0.5);
-	font-weight: 400;
+	font-weight: 500;
 	text-align: center;
 	line-height: 1;
 }
@@ -72,7 +72,7 @@ const labelsStore = useLabelsStore();
 .label__item-size {
 	grid-area: A;
 	font-size: var(--fs-normal);
-	font-weight: 600;
+	/* font-weight: 600; */
 }
 .label__long-desc {
 	grid-area: B;
@@ -84,7 +84,7 @@ const labelsStore = useLabelsStore();
 
 .label__item-glue {
 	grid-area: C;
-	font-size: var(--fs-small);
+	font-size: var(--fs-smaller);
 }
 
 .label__contract {
