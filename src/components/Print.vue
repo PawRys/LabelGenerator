@@ -62,8 +62,9 @@ const labelsStore = useLabelsStore();
 
 	font-size: 3cm; /* Master font size for all label childs */
 	--fs-normal: 3cm;
-	--fs-small: calc(var(--fs-normal) * 0.8);
-	--fs-smaller: calc(var(--fs-small) * 0.5);
+	--fs-small: calc(var(--fs-normal) * 0.75);
+	--fs-smaller: calc(var(--fs-normal) * 0.55);
+	--fs-smallest: calc(var(--fs-normal) * 0.35);
 	font-weight: 500;
 	text-align: center;
 	line-height: 1;
@@ -89,17 +90,17 @@ const labelsStore = useLabelsStore();
 
 .label__contract {
 	grid-area: D;
-	font-size: var(--fs-smaller);
+	font-size: var(--fs-smallest);
 	font-weight: 400;
 }
 .label__pack-size {
 	grid-area: E;
-	font-size: var(--fs-small);
+	font-size: var(--fs-normal);
 	font-weight: 600;
 }
 .label__pack-size::after {
 	content: 'szt.';
-	font-size: var(--fs-smaller);
+	font-size: var(--fs-smallest);
 	font-weight: 400;
 }
 </style>
