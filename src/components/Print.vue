@@ -50,15 +50,22 @@ const labelsStore = useLabelsStore();
 }
 
 .label {
+	/* box-shadow: 0 0 1px red; */
 	display: grid;
 	gap: 0.5cm;
 	align-self: self-end;
 	align-items: baseline;
 	grid-template-columns: auto 1fr auto;
+	grid-template-rows: 1fr auto 1fr;
 	grid-template-areas:
 		'A A A'
 		'B B B'
 		'C D E';
+
+	/* height: 100%; */
+	max-height: calc((100vh - 1mm) / 2);
+	/* max-height: calc((100svh - 1mm) / 2); */
+	overflow: clip;
 
 	font-size: 3cm; /* Master font size for all label childs */
 	--fs-normal: 3cm;
@@ -81,6 +88,11 @@ const labelsStore = useLabelsStore();
 	white-space: pre-line;
 	text-align: center;
 	min-height: 1em;
+	max-height: 60%;
+	/* height: 20%; */
+	/* height: min-content; */
+	overflow: clip;
+	/* font-size: 12px; */
 }
 
 .label__item-glue {
