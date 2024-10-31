@@ -109,7 +109,7 @@ const labelsStore = useLabelsStore();
 	.label__pack-size {
 		grid-area: E;
 		font-size: var(--fs-normal);
-		font-weight: 600;
+		font-weight: 500;
 	}
 	.label__pack-size::after {
 		content: 'szt.';
