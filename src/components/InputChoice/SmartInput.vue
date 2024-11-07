@@ -27,6 +27,15 @@ function updateItem(event: Event): void {
 <template>
 	<div class="smart-input">
 		<span class="size-holder">{{ labelPropValue }}</span>
+		<!-- <textarea
+			v-if="labelProp === 'longDesc'"
+			rows="5"
+			cols="20"
+			class="size-filler"
+			@blur="updateItem"
+			@keyup="updateItem">
+      {{ labelPropValue }}
+    </textarea> -->
 		<input class="size-filler" type="text" :value="labelPropValue" @blur="updateItem" @keyup="updateItem" />
 	</div>
 </template>
@@ -48,6 +57,7 @@ function updateItem(event: Event): void {
 
 .size-holder {
 	visibility: hidden;
+	white-space: pre-line;
 }
 .size-holder:empty::before {
 	/*  if input has no value, hold size of few hard-space */
@@ -56,5 +66,6 @@ function updateItem(event: Event): void {
 .size-filler {
 	position: absolute;
 	inset: 0;
+	white-space: pre-line;
 }
 </style>
