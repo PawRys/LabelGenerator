@@ -91,12 +91,11 @@ const labelsStore = useLabelsStore();
 	.label__long-desc {
 		grid-area: B;
 		font-size: var(--fs-small);
-		/* white-space: pre-line; */
+		white-space: pre-line;
 		text-align: center;
 		min-height: calc(var(--fs-normal) * 1);
-		max-height: calc(var(--fs-normal) * 2.2);
-		box-shadow: inset 0 0 0 1px hotpink;
-		/* height: min-content; */
+		max-height: calc(var(--fs-normal) * 2.3);
+		/* box-shadow: inset 0 0 0 1px hotpink; */
 		overflow: clip;
 	}
 
