@@ -7,7 +7,7 @@ const labelsStore = useLabelsStore();
 		<template
 			v-for="({ contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 			:key="index">
-			<section v-for="n in +packsCount" class="page">
+			<section v-for="n in +packsCount" class="page roboto-flex">
 				<div class="label">
 					<div class="label__item-size">{{ itemSize }}</div>
 					<div class="label__long-desc">{{ longDesc }}</div>
@@ -71,8 +71,8 @@ const labelsStore = useLabelsStore();
 		max-height: calc(50vh - 0.5cm - 1px);
 		overflow: clip;
 
-		font-size: 3cm; /* Master font size for all label childs */
-		--fs-normal: 3cm;
+		font-size: var(--fs-normal); /* Master font size for all label childs */
+		--fs-normal: 2.7cm;
 		--fs-small: calc(var(--fs-normal) * 0.75);
 		--fs-smaller: calc(var(--fs-normal) * 0.55);
 		--fs-smallest: calc(var(--fs-normal) * 0.35);
