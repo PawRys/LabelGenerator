@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 *,
 *::after,
@@ -30,7 +30,9 @@ body {
 	margin-inline: auto;
 	font-size: 1rem;
 	font-family: 'Rajdhani', sans-serif;
+	/* font-family: "Dosis", serif; */
 	/* font-family: 'Roboto Flex', serif; */
+
 	/* font-family: 'Quicksand', sans-serif; */
 	/* font-family: 'Barlow', sans-serif; */
 	/* font-family: 'Barlow Condensed', sans-serif; */
