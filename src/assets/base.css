@@ -64,7 +64,8 @@ h2 {
 
 :is(button, .button).cta {
 	background-color: lightsteelblue;
-	font-weight: 500;
+	font-family: 'Roboto Flex', serif;
+	font-weight: 400;
 }
 
 :is(button, .button):hover {

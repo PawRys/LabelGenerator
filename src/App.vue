@@ -42,10 +42,6 @@ import Print from './components/Print.vue';
 	}
 }
 
-h1 {
-	font-family: 'Roboto Flex', serif;
-}
-
 .narrow-box {
 	margin-inline: auto;
 	max-width: 60ch;
