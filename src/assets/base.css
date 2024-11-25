@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Rajdhani:wght@300;400;500;600;700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap'); 
+*/
 
 *,
 *::after,
@@ -16,27 +18,12 @@
 	font-size: 112.5%; /* 18px */
 }
 
-.roboto-flex {
-	font-family: 'Roboto Flex', serif;
-	/* font-optical-sizing: auto; */
-	/* font-style: normal; */
-	/* font-variation-settings: 'slnt' 0, 'wdth' 100, 'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203, */
-	/* 'YTFI' 738, 'YTLC' 514, 'YTUC' 712; */
-}
-
 body {
 	padding-inline: 1ch;
 	max-width: 96ch;
 	margin-inline: auto;
 	font-size: 1rem;
 	font-family: 'Rajdhani', sans-serif;
-	/* font-family: "Dosis", serif; */
-	/* font-family: 'Roboto Flex', serif; */
-
-	/* font-family: 'Quicksand', sans-serif; */
-	/* font-family: 'Barlow', sans-serif; */
-	/* font-family: 'Barlow Condensed', sans-serif; */
-	/* font-family: 'Barlow Semi Condensed', sans-serif; */
 }
 
 p {

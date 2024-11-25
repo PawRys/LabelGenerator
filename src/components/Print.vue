@@ -31,6 +31,19 @@ const labelsStore = useLabelsStore();
 </template>
 
 <style scoped>
+.page {
+	--fs-normal: 2.7cm;
+	--fs-small: calc(var(--fs-normal) * 0.75);
+	--fs-smaller: calc(var(--fs-normal) * 0.55);
+	--fs-smallest: calc(var(--fs-normal) * 0.35);
+
+	font-family: 'Roboto Flex', serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+	font-variation-settings: 'slnt' 0, 'wdth' 100, 'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203,
+		'YTFI' 738, 'YTLC' 514, 'YTUC' 712;
+}
+
 @media print {
 	.page {
 		width: 100vw;
@@ -56,6 +69,7 @@ const labelsStore = useLabelsStore();
 		border-bottom: dashed 1px gray;
 		width: 100%;
 	}
+
 	.label {
 		display: grid;
 		gap: 0.5cm;
@@ -71,13 +85,7 @@ const labelsStore = useLabelsStore();
 		max-height: calc(50vh - 0.5cm - 1px);
 		overflow: clip;
 
-		font-family: 'Roboto Flex', sans-serif;
-		/* font-family: 'Assistant', sans-serif; */
 		font-size: var(--fs-normal); /* Master font size for all label childs */
-		--fs-normal: 2.7cm;
-		--fs-small: calc(var(--fs-normal) * 0.75);
-		--fs-smaller: calc(var(--fs-normal) * 0.55);
-		--fs-smallest: calc(var(--fs-normal) * 0.35);
 		font-weight: 500;
 		text-align: center;
 		line-height: 1.1;
