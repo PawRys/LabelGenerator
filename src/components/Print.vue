@@ -45,9 +45,6 @@ const labelsStore = useLabelsStore();
 }
 
 @media print {
-	.class-smt {
-		display: none;
-	}
 	.page {
 		width: 100vw;
 		height: 100vh;
