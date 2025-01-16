@@ -23,9 +23,9 @@ const regExp_ItemDescription: RegExp = /\b(Birch plywood|EXT|WD|INT|MR)\b/i;
 
 async function addItemsFromFiles(event: Event): Promise<void> {
 	const target = event.target as HTMLInputElement;
-	const files = target.files as FileList;
-	const extractedData = await extractDataFromPDF(files);
-	const usefullData = filterUselessData(extractedData);
+	const pdfFiles = target.files as FileList;
+	const textFiles = await extractTextFromPDF(pdfFiles);
+	const usefullData = filterUselessData(textFiles);
 	const dataToDisplay = buildDataToDisplay(usefullData);
 
 	labelsStore.addItem(...dataToDisplay);
@@ -36,7 +36,7 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 	// console.log('dataToDisplay: ', dataToDisplay);
 }
 
-async function extractDataFromPDF(files: FileList): Promise<string[]> {
+async function extractTextFromPDF(files: FileList): Promise<string[]> {
 	const filesCount = files.length;
 	let result = [];
 	for (let fileNo = 0; fileNo < filesCount; fileNo++) {
@@ -64,12 +64,12 @@ async function extractDataFromPDF(files: FileList): Promise<string[]> {
 	return result;
 }
 
-function filterUselessData(input: String[]): Array<String> {
+function filterUselessData(textFile: String[]): Array<String> {
 	let output = [];
-	const itemsLenght = input.length;
-	for (let i = 0; i < itemsLenght; i++) {
+	const textFileLenght = textFile.length;
+	for (let i = 0; i < textFileLenght; i++) {
 		let lastOutput = output[output.length - 1] as string;
-		let currentItem = input[i] as string;
+		let currentItem = textFile[i] as string;
 		let testSum = 0;
 
 		testSum += regExp_ItemSize.test(currentItem) ? 1 : 0;
