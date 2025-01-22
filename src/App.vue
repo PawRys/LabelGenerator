@@ -10,12 +10,32 @@ import Print from './components/Print.vue';
 
 <template>
 	<header class="noprint">
+		<p>
+			<a href="https://pawrys.github.io/StockBrowser5/">Stany</a>
+			<span> / </span>
+			<a href="https://pawrys.github.io/LabelGenerator/">Etykiety</a>
+			<span> / </span>
+			<a href="https://pawrys.github.io/PurchaseComparator/">Tester</a>
+		</p>
+
 		<h1>Etykieter</h1>
 	</header>
 	<InputChoice class="noprint" />
 	<PageCount class="noprint" />
 	<Results class="noprint" />
 	<Print class="printme" />
+	<footer class="noprint">
+		<p>Wszelkie prawa zastrzeżone - Paweł Ryszkowski</p>
+		<p>
+			Uwagi i pomoc techniczna:
+			<a href="mailto:pawrys.kontakt@gmail.com?subject=Pomoc%20Stock%20Browser%205" target="_blank"
+				>pawrys.kontakt@gmail.com</a
+			>
+			<span> - </span>
+			<a href="https://github.com/PawRys/">Github/PawRys</a>
+		</p>
+		<p></p>
+	</footer>
 </template>
 
 <style>
