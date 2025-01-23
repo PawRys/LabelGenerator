@@ -20,8 +20,8 @@ function plural(one: string, two: string, tre: string, val: number): String {
 			}}</span>
 			<span class="page-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
 
-			<button class="cta" onclick="window.print()">Drukuj</button>
 			<button @click="labelsStore.removeAll()">Usuń wszystkie</button>
+			<button class="cta" onclick="window.print()">Drukuj</button>
 		</div>
 	</section>
 </template>
