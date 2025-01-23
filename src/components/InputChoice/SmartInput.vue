@@ -18,6 +18,8 @@ const labelPropValue = computed(() => {
 function updateItem(event: Event): void {
 	const target = event.target as HTMLInputElement;
 	const value = target.value;
+	console.log(labelPropValue.value);
+
 	if (labelIndex !== undefined && labelProp !== '') {
 		labelsStore.updateItem(labelIndex, labelProp as keyof LabelInterface, value);
 	}
@@ -26,17 +28,23 @@ function updateItem(event: Event): void {
 
 <template>
 	<div class="smart-input">
-		<span class="size-holder">{{ labelPropValue }}</span>
-		<!-- <textarea
+		<div class="size-holder">{{ labelPropValue }}</div>
+		<textarea
 			v-if="labelProp === 'longDesc'"
 			rows="5"
 			cols="20"
 			class="size-filler"
 			@blur="updateItem"
-			@keyup="updateItem">
-      {{ labelPropValue }}
-    </textarea> -->
-		<input class="size-filler" type="text" :value="labelPropValue" @blur="updateItem" @keyup="updateItem" />
+			@keyup="updateItem"
+			>{{ labelPropValue }}</textarea
+		>
+		<input
+			v-if="labelProp !== 'longDesc'"
+			class="size-filler"
+			type="text"
+			:value="labelPropValue"
+			@blur="updateItem"
+			@keyup="updateItem" />
 	</div>
 </template>
 
@@ -58,12 +66,15 @@ function updateItem(event: Event): void {
 .size-holder {
 	visibility: hidden;
 	white-space: pre-line;
+	padding: 0.5ch 1ch;
 }
 .size-holder:empty::before {
 	/*  if input has no value, hold size of few hard-space */
 	content: '  ';
 }
 .size-filler {
+	/* visibility: hidden; */
+
 	position: absolute;
 	inset: 0;
 	white-space: pre-line;

@@ -5,8 +5,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite --host",
-		"build-deploy": "vite build && gh-pages -d dist",
-		"---": "---",
+		"build-deploy": "vite build && gh-pages -d dist"
+	},
+	"scripts-disabled": {
 		"preview": "vite preview",
 		"build-check": "run-p type-check build-only",
 		"type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
