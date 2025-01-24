@@ -1,11 +1,29 @@
 <script setup lang="ts">
+import { computed, onBeforeUpdate, onMounted, onUpdated, watch } from 'vue';
 import { useLabelsStore } from '@/stores/labels';
 const labelsStore = useLabelsStore();
+import { usePrintLayout } from '@/stores/printLayout';
+
+const { layoutName } = storeToRefs(usePrintLayout());
 
 import InputChoice from './components/InputChoice.vue';
-import PageCount from './components/PageCount.vue';
+import PrintSettings from './components/PrintSettings.vue';
 import Results from './components/Results.vue';
-import Print from './components/Print.vue';
+
+import PrintSingle from '@/components/PrintSingle.vue';
+import PrintDouble from '@/components/PrintDouble.vue';
+import { storeToRefs } from 'pinia';
+
+const printLayoutList = {
+	PrintSingle: { component: PrintSingle, label: 'Jedna na stronę', orientation: 'landscape', icon: 'bi bi-box-seam' },
+	PrintDouble: { component: PrintDouble, label: 'Dwie na stronę', orientation: 'portrait', icon: 'bi bi-box-seam' },
+};
+
+const activeLayout = computed(() => {
+	const activeLayoutIndex =
+		usePrintLayout().layoutName in printLayoutList ? usePrintLayout().layoutName : Object.keys(printLayoutList)[0];
+	return printLayoutList[activeLayoutIndex as keyof typeof printLayoutList];
+});
 </script>
 
 <template>
@@ -21,9 +39,11 @@ import Print from './components/Print.vue';
 		<h1>Etykieter</h1>
 	</header>
 	<InputChoice class="noprint" />
-	<PageCount class="noprint" />
+	<PrintSettings class="noprint" />
 	<Results class="noprint" />
-	<Print class="printme" />
+
+	<component class="printme" :is="activeLayout.component"></component>
+
 	<footer class="noprint">
 		<p>Wszelkie prawa zastrzeżone - Paweł Ryszkowski</p>
 		<p>
@@ -40,19 +60,24 @@ import Print from './components/Print.vue';
 
 <style>
 @page {
-	size: 210mm 297mm;
+	size: A4 portrait;
 	margin: 10mm;
 }
+
 .printme {
+	/* visibility: collapse; */
 	display: none;
 }
+
 @media print {
 	.noprint {
 		display: none;
 	}
+
 	.printme {
 		display: block;
 	}
+
 	* {
 		box-sizing: border-box;
 		position: relative;
@@ -64,7 +89,7 @@ import Print from './components/Print.vue';
 
 .narrow-box {
 	margin-inline: auto;
-	max-width: 60ch;
+	max-width: 80ch;
 }
 
 .button-bar {

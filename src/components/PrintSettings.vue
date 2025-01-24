@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
 const labelsStore = useLabelsStore();
+import { usePrintLayout } from '@/stores/printLayout';
 
 function plural(one: string, two: string, tre: string, val: number): String {
 	let result = '';
@@ -8,6 +9,34 @@ function plural(one: string, two: string, tre: string, val: number): String {
 	else if (val % 10 > 1 && val % 10 < 5 && (val % 100 < 10 || val % 100 > 20)) result = two;
 	else if (val >= 5) result = tre;
 	return result;
+}
+
+function printSingle() {
+	const style = document.createElement('style');
+	style.innerHTML = `@page {size: A4 landscape; margin: 10mm;}`;
+	document.head.appendChild(style);
+
+	usePrintLayout().layoutName = 'PrintSingle';
+
+	// Ensure styles are applied before printing
+	requestAnimationFrame(() => {
+		window.print();
+		document.head.removeChild(style);
+	});
+}
+
+function printDouble() {
+	const style = document.createElement('style');
+	style.innerHTML = `@page {size: A4 portrait; margin: 10mm;}`;
+	document.head.appendChild(style);
+
+	usePrintLayout().layoutName = 'PrintDouble';
+
+	// Ensure styles are applied before printing
+	requestAnimationFrame(() => {
+		window.print();
+		document.head.removeChild(style);
+	});
 }
 </script>
 
@@ -21,15 +50,43 @@ function plural(one: string, two: string, tre: string, val: number): String {
 			<span class="page-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
 
 			<button @click="labelsStore.removeAll()">Usuń wszystkie</button>
-			<button class="cta" onclick="window.print()">Drukuj</button>
+			<button class="cta" @click="printSingle()">
+				Drukuj jedną na stronę
+				<span class="single-card">
+					<i class="bi bi-card-text"></i>
+				</span>
+			</button>
+			<button class="cta" @click="printDouble()">
+				Drukuj dwie na stronę
+				<span class="double-card">
+					<i class="bi bi-card-text"></i>
+					<i class="bi bi-card-text"></i>
+				</span>
+			</button>
+			<!-- <button class="cta" onclick="window.print()">Drukuj</button> -->
 		</div>
 	</section>
 </template>
 
 <style scoped>
+button {
+	align-items: center;
+}
+
+.single-card i {
+	scale: 2;
+}
+
+.double-card i {
+	line-height: 0;
+	padding: 0;
+	margin: 0;
+}
+
 .page-count {
 	font-size: 1.5em;
 	font-weight: 500;
+	white-space: nowrap;
 }
 
 .page-count__info {
