@@ -1,8 +1,4 @@
 <script setup lang="ts">
-// import * as pdfjsLib from 'pdfjs-dist';
-// import 'pdfjs-dist/build/pdf.worker.entry';
-// import type { TextItem } from 'pdfjs-dist/types/src/display/api';
-
 import * as pdfjsLib from 'pdfjs-dist';
 import 'pdfjs-dist/build/pdf.worker.min.mjs';
 import type { TextItem } from 'pdfjs-dist/types/src/display/api';
@@ -16,15 +12,6 @@ const regExp_ItemPacking: RegExp = /\b\d+x\d+\b/i; // 16x50
 const regExp_ItemGlueing: RegExp = /\b(EXT|WD|INT|MR)\b/i;
 const regExp_ItemDescription: RegExp = /\b(Birch plywood|EXT|WD|INT|MR)\b/i;
 
-// interface LabelInterface {
-// 	contract: string;
-// 	longDesc: string;
-// 	itemSize: string;
-// 	itemGlue: string;
-// 	packsCount: string;
-// 	packSize: string;
-// }
-
 async function addItemsFromFiles(event: Event): Promise<void> {
 	const target = event.target as HTMLInputElement;
 	const pdfFiles = target.files as FileList;
@@ -34,10 +21,6 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 
 	labelsStore.addItem(...dataToDisplay);
 	target.value = ''; /**reset input */
-
-	// console.log('extractedData: ', extractedData);
-	// console.log('usefullData: ', usefullData);
-	// console.log('dataToDisplay: ', dataToDisplay);
 }
 
 async function extractTextFromPDF(files: FileList): Promise<string[]> {

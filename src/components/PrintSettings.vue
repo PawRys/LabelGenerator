@@ -15,10 +15,7 @@ function printSingle() {
 	const style = document.createElement('style');
 	style.innerHTML = `@page {size: A4 landscape; margin: 10mm;}`;
 	document.head.appendChild(style);
-
 	usePrintLayout().layoutName = 'PrintSingle';
-
-	// Ensure styles are applied before printing
 	requestAnimationFrame(() => {
 		window.print();
 		document.head.removeChild(style);
@@ -29,10 +26,7 @@ function printDouble() {
 	const style = document.createElement('style');
 	style.innerHTML = `@page {size: A4 portrait; margin: 10mm;}`;
 	document.head.appendChild(style);
-
 	usePrintLayout().layoutName = 'PrintDouble';
-
-	// Ensure styles are applied before printing
 	requestAnimationFrame(() => {
 		window.print();
 		document.head.removeChild(style);
