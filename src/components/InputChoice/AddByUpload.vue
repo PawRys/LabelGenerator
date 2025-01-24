@@ -1,6 +1,10 @@
 <script setup lang="ts">
+// import * as pdfjsLib from 'pdfjs-dist';
+// import 'pdfjs-dist/build/pdf.worker.entry';
+// import type { TextItem } from 'pdfjs-dist/types/src/display/api';
+
 import * as pdfjsLib from 'pdfjs-dist';
-import 'pdfjs-dist/build/pdf.worker.entry';
+import 'pdfjs-dist/build/pdf.worker.min.mjs';
 import type { TextItem } from 'pdfjs-dist/types/src/display/api';
 
 import { useLabelsStore, type LabelInterface } from '@/stores/labels';
