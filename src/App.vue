@@ -89,7 +89,7 @@ const activeLayout = computed(() => {
 
 .narrow-box {
 	margin-inline: auto;
-	max-width: 80ch;
+	max-width: 65ch;
 }
 
 .button-bar {
