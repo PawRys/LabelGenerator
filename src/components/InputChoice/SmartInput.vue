@@ -55,6 +55,7 @@ function updateItem(event: Event): void {
 	grid-template-rows: 100%;
 	width: 100%;
 }
+
 .smart-input > * {
 	width: 100%;
 	padding: 0.1rem;
@@ -66,17 +67,22 @@ function updateItem(event: Event): void {
 .size-holder {
 	visibility: hidden;
 	white-space: pre-line;
+	text-wrap: nowrap;
 	padding: 0.5ch 1ch;
 }
-.size-holder:empty::before {
-	/*  if input has no value, hold size of few hard-space */
-	content: '  ';
-}
-.size-filler {
-	/* visibility: hidden; */
 
+.long-width .size-holder {
+	text-wrap: wrap;
+}
+
+.size-holder:empty::before {
+	content: '  '; /*  if input has no value, hold size of few hard-space */
+}
+
+.size-filler {
 	position: absolute;
 	inset: 0;
 	white-space: pre-line;
+	padding: 0.5ch 1ch;
 }
 </style>

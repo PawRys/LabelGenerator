@@ -53,6 +53,7 @@ td {
 	text-align: center;
 	line-height: 1.5;
 }
+
 .divider {
 	margin-block: 2em 4em;
 	border: none;
@@ -62,7 +63,8 @@ td {
 .nowrap {
 	white-space: nowrap;
 }
+
 .short-width {
-	width: 4ch;
+	width: min-content;
 }
 </style>
