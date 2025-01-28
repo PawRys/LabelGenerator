@@ -66,7 +66,7 @@ import { usePrintLayout } from '@/stores/printLayout';
 		align-self: self-end;
 		align-items: baseline;
 		grid-template-columns: auto 1fr auto;
-		grid-template-rows: fit-content 1fr fit-content;
+		grid-template-rows: 1fr auto auto;
 		grid-template-areas:
 			'A A A'
 			'B B B'
@@ -85,11 +85,14 @@ import { usePrintLayout } from '@/stores/printLayout';
 		grid-area: A;
 		font-size: var(--fs-normal);
 		font-weight: 600;
+		align-self: end;
 	}
+
 	.label__long-desc {
 		grid-area: B;
 		font-size: var(--fs-small);
 		white-space: pre-line;
+		text-wrap: balance;
 		text-align: center;
 		min-height: calc(var(--fs-normal) * 1);
 		max-height: calc(var(--fs-normal) * 2.3);
