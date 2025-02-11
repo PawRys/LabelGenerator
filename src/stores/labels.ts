@@ -2,6 +2,7 @@ import { ref, reactive } from 'vue';
 import { defineStore } from 'pinia';
 
 export interface LabelInterface {
+	invoice: string;
 	contract: string;
 	longDesc: string;
 	itemSize: string;

@@ -6,14 +6,14 @@ import { usePrintLayout } from '@/stores/printLayout';
 <template>
 	<section>
 		<template
-			v-for="({ contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
+			v-for="({ invoice, contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 			:key="index">
 			<section v-for="n in +packsCount" class="page">
 				<div class="label">
 					<div class="label__item-size">{{ itemSize }}</div>
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
-					<span class="label__contract">{{ contract }}</span>
+					<span class="label__contract">{{ invoice }}</span>
 					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 
@@ -23,7 +23,7 @@ import { usePrintLayout } from '@/stores/printLayout';
 					<div class="label__item-size">{{ itemSize }}</div>
 					<div class="label__long-desc">{{ longDesc }}</div>
 					<span class="label__item-glue">{{ itemGlue }}</span>
-					<span class="label__contract">{{ contract }}</span>
+					<span class="label__contract">{{ invoice }}</span>
 					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
 			</section>
