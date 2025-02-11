@@ -25,7 +25,8 @@ const labelsStore = useLabelsStore();
 					<SmartInput :label-index="index" :label-prop="'packSize'" class="short-width" />
 				</td>
 				<td>
-					<SmartInput :label-index="index" :label-prop="'contract'" />
+					<!-- <SmartInput :label-index="index" :label-prop="'contract'" /> -->
+					<SmartInput :label-index="index" :label-prop="'invoice'" />
 				</td>
 				<td>
 					<button @click="labelsStore.removeItem(index)">Usuń</button>

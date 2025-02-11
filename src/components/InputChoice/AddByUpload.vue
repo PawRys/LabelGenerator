@@ -7,7 +7,8 @@ import { useLabelsStore, type LabelInterface } from '@/stores/labels';
 const labelsStore = useLabelsStore();
 
 const regExp_ItemSize: RegExp = /\b\d+x\d+x\d+\b/i; // 12x1250x2500
-const regExp_ContarctNo: RegExp = /\b(Contract)\b/i;
+const regExp_InvoiceNo: RegExp = /\bLF[0-9]{2} M[0-9]{6}\b/i;
+const regExp_ContarctNo: RegExp = /\bBPL20[0-9]{2}-[0-9]{4,5}\b/i;
 const regExp_ItemPacking: RegExp = /\b\d+x\d+\b/i; // 16x50
 const regExp_ItemGlueing: RegExp = /\b(EXT|WD|INT|MR)\b/i;
 const regExp_ItemDescription: RegExp = /\b(Birch plywood|EXT|WD|INT|MR)\b/i;
@@ -60,6 +61,7 @@ function filterUselessData(textFile: String[]): Array<String> {
 		let testSum = 0;
 
 		testSum += regExp_ItemSize.test(currentItem) ? 1 : 0;
+		testSum += regExp_InvoiceNo.test(currentItem) ? 1 : 0;
 		testSum += regExp_ContarctNo.test(currentItem) ? 1 : 0;
 		testSum += regExp_ItemPacking.test(currentItem) ? 1 : 0;
 		testSum += regExp_ItemDescription.test(currentItem) ? 1 : 0;
@@ -78,7 +80,8 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 	let result = [];
 	const itemsLength = items.length;
 	let itemSize: string = '';
-	let contractNo: string = '';
+	let invoiceNo: string = getPurifiedInvoiceNo(items.join('\t'));
+	let contractNo: string = getPurifiedContractNo(items.join('\t'));
 	let itemPacksCount: string = '';
 	let itemPackSize: string = '';
 	let itemGlueing: string = '';
@@ -88,10 +91,15 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 	for (let i = 0; i < itemsLength; i++) {
 		const item = items[i] as string;
 
-		if (regExp_ContarctNo.test(item)) {
-			contractNo = getPurifiedContractNo(item);
-			itemType = 'contractNo';
-		}
+		// if (regExp_InvoiceNo.test(item)) {
+		// 	invoiceNo = getPurifiedInvoiceNo(item);
+		// 	itemType = 'invoiceNo';
+		// }
+
+		// if (regExp_ContarctNo.test(item)) {
+		// 	contractNo = getPurifiedContractNo(item);
+		// 	itemType = 'contractNo';
+		// }
 
 		if (regExp_ItemGlueing.test(item)) {
 			itemGlueing = getItemGlueing(item);
@@ -117,6 +125,7 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 
 		if (itemType === 'itemPacking') {
 			result.push({
+				invoice: invoiceNo,
 				contract: contractNo,
 				longDesc: itemDescription,
 				itemSize: itemSize,
@@ -127,6 +136,8 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 			itemType = '';
 		}
 	}
+
+	console.log(result);
 
 	return result;
 }
@@ -157,8 +168,14 @@ function getPackingInfo(input: string): Array<string> {
 	return matching[0].split('x');
 }
 
+function getPurifiedInvoiceNo(input: string): string {
+	const match = input.match(regExp_InvoiceNo);
+	return match ? match[0].trim() : '';
+}
+
 function getPurifiedContractNo(input: string): string {
-	return input.replace(/Contract No\.:/i, '').trim();
+	const match = input.match(regExp_ContarctNo);
+	return match ? match[0].trim() : '';
 }
 
 function getItemGlueing(input: string): string {
