@@ -33,7 +33,8 @@ function addItem(input: Event): void {
 					<span>szt.</span>
 				</section>
 
-				<input type="text" name="contract" class="contract-number" placeholder="mały tekst" />
+				<!-- <input type="text" name="contract" class="contract-number" placeholder="mały tekst" /> -->
+				<input type="text" name="invoice" class="contract-number" placeholder="mały tekst" />
 
 				<div class="button-bar">
 					<button type="reset">Wyczyść formularz</button>
