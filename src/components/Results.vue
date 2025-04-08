@@ -8,6 +8,15 @@ const labelsStore = useLabelsStore();
 <template>
 	<section>
 		<table>
+			<tr v-if="labelsStore.items.length">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><button @click="labelsStore.removeAll()">Usuń wszystkie</button></td>
+			</tr>
 			<tr v-for="({}, index) in labelsStore.items" :key="index">
 				<td>{{ index + 1 }}.</td>
 				<td>
@@ -47,6 +56,10 @@ table {
 
 td {
 	text-align: center;
+}
+
+button {
+	width: min-content;
 }
 
 .table__long-desc {

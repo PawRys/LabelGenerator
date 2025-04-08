@@ -43,7 +43,7 @@ function printDouble() {
 			}}</span>
 			<span class="page-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
 
-			<button @click="labelsStore.removeAll()">Usuń wszystkie</button>
+			<!-- <button @click="labelsStore.removeAll()">Usuń wszystkie</button> -->
 			<button class="cta" @click="printSingle()">
 				Drukuj jedną na stronę
 				<span class="single-card">
