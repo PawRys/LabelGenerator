@@ -9,13 +9,13 @@ const labelsStore = useLabelsStore();
 	<section>
 		<table>
 			<tr v-if="labelsStore.items.length">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><button @click="labelsStore.removeAll()">Usuń wszystkie</button></td>
+				<th>#</th>
+				<th>Tytuł</th>
+				<th>Opis</th>
+				<th>Klej</th>
+				<th>Paczki x szt.</th>
+				<th>Notatka</th>
+				<th><button @click="labelsStore.removeAll()">Usuń wszystkie</button></th>
 			</tr>
 			<tr v-for="({}, index) in labelsStore.items" :key="index">
 				<td>{{ index + 1 }}.</td>
@@ -52,6 +52,10 @@ table {
 	/* margin-bottom: 5em; */
 	width: 100%;
 	border-spacing: 1em;
+}
+
+th {
+	font-weight: 600;
 }
 
 td {
