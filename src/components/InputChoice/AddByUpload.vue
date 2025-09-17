@@ -36,6 +36,7 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 		const arrayBuffer = await file.arrayBuffer();
 		const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
 		const pagesCount = pdf.numPages;
+		let fileContent = [];
 
 		for (let pageNo = 1; pageNo <= pagesCount; pageNo++) {
 			const page = await pdf.getPage(pageNo);
@@ -45,9 +46,14 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 			for (let i = 0; i < contentSize; i++) {
 				const item = content.items[i] as TextItem;
 				const text: string = item.str;
-				result.push(text);
+				if (regExp_InvoiceNo.test(text)) {
+					fileContent.unshift(text);
+				} else {
+					fileContent.push(text);
+				}
 			}
 		}
+		result.push(...fileContent);
 	}
 	return result;
 }
@@ -77,6 +83,8 @@ function filterUselessData(textFile: String[]): Array<String> {
 }
 
 function buildDataToDisplay(items: String[]): LabelInterface[] {
+	console.log(items);
+
 	let result = [];
 	const itemsLength = items.length;
 	let itemSize: string = '';
@@ -91,15 +99,16 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 	for (let i = 0; i < itemsLength; i++) {
 		const item = items[i] as string;
 
-		// if (regExp_InvoiceNo.test(item)) {
-		// 	invoiceNo = getPurifiedInvoiceNo(item);
-		// 	itemType = 'invoiceNo';
-		// }
+		if (regExp_InvoiceNo.test(item)) {
+			const newInvoiceNo = getPurifiedInvoiceNo(item);
+			if (invoiceNo != newInvoiceNo) invoiceNo = newInvoiceNo;
+			itemType = 'invoiceNo';
+		}
 
-		// if (regExp_ContarctNo.test(item)) {
-		// 	contractNo = getPurifiedContractNo(item);
-		// 	itemType = 'contractNo';
-		// }
+		if (regExp_ContarctNo.test(item)) {
+			contractNo = getPurifiedContractNo(item);
+			itemType = 'contractNo';
+		}
 
 		if (regExp_ItemGlueing.test(item)) {
 			itemGlueing = getItemGlueing(item);
