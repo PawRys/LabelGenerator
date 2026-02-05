@@ -134,6 +134,7 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 
 		if (itemType === 'itemPacking') {
 			result.push({
+				orderNo: `${i}`,
 				invoice: invoiceNo,
 				contract: contractNo,
 				longDesc: itemDescription,
@@ -145,16 +146,7 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 			itemType = '';
 		}
 	}
-
-	result.sort((a, b) => {
-		// const A = `${a.itemSize.split('x').slice(1).concat(a.itemSize.split('x')[0]).join('x')}x${a.packSize}`;
-		// const B = `${b.itemSize.split('x').slice(1).concat(b.itemSize.split('x')[0]).join('x')}x${b.packSize}`;
-		const A = `${a.itemSize}x${a.packSize}`;
-		const B = `${b.itemSize}x${b.packSize}`;
-		return A.localeCompare(B, 'pl', { numeric: true });
-	});
-
-	console.log(result);
+	// console.log(result);
 
 	return result;
 }

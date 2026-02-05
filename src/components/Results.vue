@@ -7,6 +7,13 @@ const labelsStore = useLabelsStore();
 
 <template>
 	<section>
+		<div class="button-bar" v-if="labelsStore.items.length">
+			<button class="wide-button" @click="labelsStore.sortItems(0)" v-if="labelsStore.items[0].orderNo">
+				Bez sortowania
+			</button>
+			<button class="wide-button" @click="labelsStore.sortItems(1)">Sortuj grubość</button>
+			<button class="wide-button" @click="labelsStore.sortItems(2)">Sortuj format</button>
+		</div>
 		<table>
 			<tr v-if="labelsStore.items.length">
 				<th>#</th>
@@ -64,6 +71,14 @@ td {
 
 button {
 	width: min-content;
+}
+
+.sorting-buttons {
+	display: flex;
+}
+
+.wide-button {
+	width: max-content;
 }
 
 .table__long-desc {
