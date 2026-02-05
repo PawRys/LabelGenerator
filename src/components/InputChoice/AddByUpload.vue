@@ -134,7 +134,7 @@ function buildDataToDisplay(items: String[]): LabelInterface[] {
 
 		if (itemType === 'itemPacking') {
 			result.push({
-				orderNo: `${i}`,
+				orderNo: i,
 				invoice: invoiceNo,
 				contract: contractNo,
 				longDesc: itemDescription,

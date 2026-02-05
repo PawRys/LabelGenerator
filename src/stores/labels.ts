@@ -2,7 +2,7 @@ import { ref, reactive } from 'vue';
 import { defineStore } from 'pinia';
 
 export interface LabelInterface {
-	orderNo?: string;
+	orderNo?: number;
 	invoice: string;
 	contract: string;
 	longDesc: string;
@@ -26,7 +26,7 @@ export const useLabelsStore = defineStore('labels', () => {
 
 	function updateItem(index: number, property: keyof LabelInterface, dataToSave: string) {
 		const itemToUpdate = items[index];
-		if (itemToUpdate) {
+		if (itemToUpdate && property !== 'orderNo') {
 			itemToUpdate[property] = nowrap(dataToSave);
 		}
 	}
@@ -47,9 +47,8 @@ export const useLabelsStore = defineStore('labels', () => {
 		// No-sort
 		if (n === 0) {
 			items.sort((a, b) => {
-				const A = a.orderNo || '0';
-				const B = b.orderNo || '0';
-				return A.localeCompare(B, 'pl', { numeric: true });
+				if (a.orderNo !== b.orderNo) return (a.orderNo || 0) - (b.orderNo || 0);
+				return 0;
 			});
 		}
 
@@ -58,8 +57,10 @@ export const useLabelsStore = defineStore('labels', () => {
 			items.sort((a, b) => {
 				const aNums = a.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
 				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
-				for (let i = 0; i < 3; i++) {
-					if (aNums[i] !== bNums[i]) return aNums[i] - bNums[i];
+				const aOrdered = [aNums[0], aNums[1], aNums[2], Number(a.packSize)];
+				const bOrdered = [bNums[0], bNums[1], bNums[2], Number(b.packSize)];
+				for (let i = 0; i < 4; i++) {
+					if (aOrdered[i] !== bOrdered[i]) return aOrdered[i] - bOrdered[i];
 				}
 				return 0;
 			});
@@ -70,9 +71,9 @@ export const useLabelsStore = defineStore('labels', () => {
 			items.sort((a, b) => {
 				const aNums = a.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
 				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
-				const aOrdered = [Math.round(aNums[1] / 304), Math.round(aNums[2] / 304), aNums[0]];
-				const bOrdered = [Math.round(bNums[1] / 304), Math.round(bNums[2] / 304), bNums[0]];
-				for (let i = 0; i < 3; i++) {
+				const aOrdered = [Math.round(aNums[1] / 304), Math.round(aNums[2] / 304), aNums[0], Number(a.packSize)];
+				const bOrdered = [Math.round(bNums[1] / 304), Math.round(bNums[2] / 304), bNums[0], Number(b.packSize)];
+				for (let i = 0; i < 4; i++) {
 					if (aOrdered[i] !== bOrdered[i]) return aOrdered[i] - bOrdered[i];
 				}
 				return 0;
