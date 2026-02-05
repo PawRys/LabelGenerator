@@ -11,8 +11,8 @@ const labelsStore = useLabelsStore();
 			<button class="wide-button" @click="labelsStore.sortItems(0)" v-if="labelsStore.items[0].orderNo">
 				Bez sortowania
 			</button>
-			<button class="wide-button" @click="labelsStore.sortItems(1)">Sortuj grubość</button>
-			<button class="wide-button" @click="labelsStore.sortItems(2)">Sortuj format</button>
+			<button class="wide-button" @click="labelsStore.sortItems(1)">Sortuj grubością</button>
+			<button class="wide-button" @click="labelsStore.sortItems(2)">Sortuj formatem</button>
 		</div>
 		<table>
 			<tr v-if="labelsStore.items.length">

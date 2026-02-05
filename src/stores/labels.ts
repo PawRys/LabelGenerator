@@ -56,18 +56,26 @@ export const useLabelsStore = defineStore('labels', () => {
 		// Sort by Thickness
 		if (n === 1) {
 			items.sort((a, b) => {
-				const A = `${a.itemSize}x${a.packSize}`;
-				const B = `${b.itemSize}x${b.packSize}`;
-				return A.localeCompare(B, 'pl', { numeric: true });
+				const aNums = a.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
+				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
+				for (let i = 0; i < 3; i++) {
+					if (aNums[i] !== bNums[i]) return aNums[i] - bNums[i];
+				}
+				return 0;
 			});
 		}
 
-		// Sort by Format
+		// Sort by FormatGroup
 		if (n === 2) {
 			items.sort((a, b) => {
-				const A = `${a.itemSize.split('x').slice(1).concat(a.itemSize.split('x')[0]).join('x')}x${a.packSize}`;
-				const B = `${b.itemSize.split('x').slice(1).concat(b.itemSize.split('x')[0]).join('x')}x${b.packSize}`;
-				return A.localeCompare(B, 'pl', { numeric: true });
+				const aNums = a.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
+				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
+				const aOrdered = [Math.round(aNums[1] / 304), Math.round(aNums[2] / 304), aNums[0]];
+				const bOrdered = [Math.round(bNums[1] / 304), Math.round(bNums[2] / 304), bNums[0]];
+				for (let i = 0; i < 3; i++) {
+					if (aOrdered[i] !== bOrdered[i]) return aOrdered[i] - bOrdered[i];
+				}
+				return 0;
 			});
 		}
 	}
