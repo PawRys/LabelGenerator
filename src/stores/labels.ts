@@ -59,7 +59,7 @@ export const useLabelsStore = defineStore('labels', () => {
 				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
 				const aOrdered = [aNums[0], aNums[1], aNums[2], Number(a.packSize)];
 				const bOrdered = [bNums[0], bNums[1], bNums[2], Number(b.packSize)];
-				for (let i = 0; i < 4; i++) {
+				for (let i = 0; i < aOrdered.length; i++) {
 					if (aOrdered[i] !== bOrdered[i]) return aOrdered[i] - bOrdered[i];
 				}
 				return 0;
@@ -87,7 +87,7 @@ export const useLabelsStore = defineStore('labels', () => {
 					bNums[2],
 					Number(b.packSize),
 				];
-				for (let i = 0; i < 4; i++) {
+				for (let i = 0; i < aOrdered.length; i++) {
 					if (aOrdered[i] !== bOrdered[i]) return aOrdered[i] - bOrdered[i];
 				}
 				return 0;
