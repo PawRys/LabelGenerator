@@ -21,7 +21,7 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 	const dataToDisplay = buildDataToDisplay(usefullData);
 
 	labelsStore.addItem(...dataToDisplay);
-	labelsStore.sortItems(2);
+	labelsStore.sortItems(1);
 	target.value = ''; /**reset input */
 }
 
