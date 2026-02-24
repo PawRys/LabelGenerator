@@ -30,10 +30,18 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 	let result = [];
 	for (let fileNo = 0; fileNo < filesCount; fileNo++) {
 		const file = files[fileNo];
+
 		if (file.type !== 'application/pdf') {
 			console.log(`Invalid file type: ${file.type}`, file);
+			alert(`Invalid file type: ${file.type} (${file.name})`);
 			continue;
 		}
+
+		if (!file.name.match(/invoice/i)) {
+			alert(`Użyj pliku INVOICE (${file.name})`);
+			continue;
+		}
+
 		const arrayBuffer = await file.arrayBuffer();
 		const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
 		const pagesCount = pdf.numPages;
