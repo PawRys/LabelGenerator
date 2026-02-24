@@ -38,7 +38,7 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 		}
 
 		if (!file.name.match(/invoice/i)) {
-			alert(`Użyj pliku INVOICE (${file.name})`);
+			alert(`Tylko pliki "INVOICE" (file name: ${file.name})`);
 			continue;
 		}
 
