@@ -40,6 +40,10 @@ function addItem(input: Event): void {
 					<button type="reset">Wyczyść formularz</button>
 					<button type="submit" class="cta">Dodaj etykietę</button>
 				</div>
+
+				<div class="button-bar">
+					<a href="https://www.compart.com/en/unicode/block/U+2600">dodatkowe znaki</a>
+				</div>
 			</form>
 		</div>
 	</section>
