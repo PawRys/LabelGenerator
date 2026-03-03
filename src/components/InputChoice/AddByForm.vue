@@ -37,12 +37,9 @@ function addItem(input: Event): void {
 				<input type="text" name="invoice" class="contract-number" placeholder="mały tekst" />
 
 				<div class="button-bar">
+					<a href="https://www.compart.com/en/unicode/block/U+2600">dodatkowe znaki</a>
 					<button type="reset">Wyczyść formularz</button>
 					<button type="submit" class="cta">Dodaj etykietę</button>
-				</div>
-
-				<div class="button-bar">
-					<a href="https://www.compart.com/en/unicode/block/U+2600">dodatkowe znaki</a>
 				</div>
 			</form>
 		</div>
