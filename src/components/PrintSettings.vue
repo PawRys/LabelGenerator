@@ -72,7 +72,7 @@ function printCheckList() {
 			</button>
 
 			<button class="cta" @click="printCheckList()">
-				<span>Drukuj Listę</span>
+				<span>Drukuj listę kontrolną</span>
 				<span class="checkList-card">
 					<i class="bi bi-clipboard-check"></i>
 				</span>
