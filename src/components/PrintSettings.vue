@@ -32,12 +32,23 @@ function printDouble() {
 		document.head.removeChild(style);
 	});
 }
+
+function printCheckList() {
+	const style = document.createElement('style');
+	style.innerHTML = `@page {size: A4 portrait; margin: 10mm;}`;
+	document.head.appendChild(style);
+	usePrintLayout().layoutName = 'PrintCheckList';
+	requestAnimationFrame(() => {
+		window.print();
+		document.head.removeChild(style);
+	});
+}
 </script>
 
 <template>
 	<section v-if="labelsStore.items.length > 0">
 		<!-- <div class="divider">---</div> -->
-		<div class="button-bar narrow-box">
+		<div class="button-bar narrow-box-">
 			<span class="page-count">{{
 				`${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}`
 			}}</span>
@@ -45,16 +56,25 @@ function printDouble() {
 
 			<!-- <button @click="labelsStore.removeAll()">Usuń wszystkie</button> -->
 			<button class="cta" @click="printSingle()">
-				Drukuj jedną na stronę
+				<span>Drukuj jedną na stronę</span>
 				<span class="single-card">
 					<i class="bi bi-card-text"></i>
 				</span>
 			</button>
+
 			<button class="cta" @click="printDouble()">
-				Drukuj dwie na stronę
+				<span>Drukuj dwie na stronę</span>
 				<span class="double-card">
 					<i class="bi bi-card-text"></i>
+					<br />
 					<i class="bi bi-card-text"></i>
+				</span>
+			</button>
+
+			<button class="cta" @click="printCheckList()">
+				<span>Drukuj Listę</span>
+				<span class="checkList-card">
+					<i class="bi bi-clipboard-check"></i>
 				</span>
 			</button>
 			<!-- <button class="cta" onclick="window.print()">Drukuj</button> -->
@@ -65,6 +85,7 @@ function printDouble() {
 <style scoped>
 button {
 	align-items: center;
+	height: 3rem;
 }
 
 .single-card i {

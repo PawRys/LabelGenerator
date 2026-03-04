@@ -12,11 +12,13 @@ import Results from './components/Results.vue';
 
 import PrintSingle from '@/components/PrintSingle.vue';
 import PrintDouble from '@/components/PrintDouble.vue';
+import PrintCheckList from '@/components/PrintCheckList.vue';
 import { storeToRefs } from 'pinia';
 
 const printLayoutList = {
 	PrintSingle: { component: PrintSingle, label: 'Jedna na stronę', orientation: 'landscape', icon: 'bi bi-box-seam' },
 	PrintDouble: { component: PrintDouble, label: 'Dwie na stronę', orientation: 'portrait', icon: 'bi bi-box-seam' },
+	PrintCheckList: { component: PrintCheckList, label: 'Lista', orientation: 'portrait', icon: 'bi bi-box-seam' },
 };
 
 const activeLayout = computed(() => {

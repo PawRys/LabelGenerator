@@ -51,6 +51,7 @@ h2 {
 
 :is(button, .button) {
 	display: inline-flex;
+	gap: 1ch;
 
 	/* margin: 0.3em; */
 	padding: 0.5em 0.8em;
