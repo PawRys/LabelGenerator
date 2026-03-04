@@ -8,7 +8,7 @@ import { usePrintLayout } from '@/stores/printLayout';
 		<template
 			v-for="({ invoice, contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 			:key="index">
-			<section v-for="n in +packsCount" class="page">
+			<div v-for="n in +packsCount" class="page">
 				<div class="label">
 					<div class="label__item-size">{{ itemSize }}</div>
 					<div class="label__long-desc">{{ longDesc }}</div>
@@ -16,9 +16,7 @@ import { usePrintLayout } from '@/stores/printLayout';
 					<span class="label__contract">{{ invoice }}</span>
 					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
-
 				<hr class="label-divider" />
-
 				<div class="label">
 					<div class="label__item-size">{{ itemSize }}</div>
 					<div class="label__long-desc">{{ longDesc }}</div>
@@ -26,26 +24,35 @@ import { usePrintLayout } from '@/stores/printLayout';
 					<span class="label__contract">{{ invoice }}</span>
 					<span class="label__pack-size" v-if="Number(packSize) > 0">{{ packSize }}</span>
 				</div>
-			</section>
+			</div>
 		</template>
 	</section>
 </template>
 
 <style scoped>
 @media print {
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	@page {
+		size: A4 portrait;
+		margin: 0;
+	}
+
 	.page {
-		width: 100vw;
-		height: 100vh;
-		max-width: 100%;
-		max-height: 100%;
 		box-sizing: border-box;
-		overflow: clip;
+		width: 100%;
+		height: 100svh;
 		margin: 0;
 		padding: 0;
 
 		display: grid;
-		gap: 1cm;
-		grid-template-rows: 1fr 1px 1fr;
+		grid-template-rows: 1fr auto 1fr;
+		gap: 0.5cm;
 		page-break-before: always;
 
 		--fs-normal: 2.7cm;
@@ -56,8 +63,18 @@ import { usePrintLayout } from '@/stores/printLayout';
 		font-family: 'Roboto Flex', serif;
 		font-optical-sizing: auto;
 		font-style: normal;
-		font-variation-settings: 'slnt' 0, 'wdth' 100, 'GRAD' 0, 'XOPQ' 96, 'XTRA' 468, 'YOPQ' 79, 'YTAS' 750, 'YTDE' -203,
-			'YTFI' 738, 'YTLC' 514, 'YTUC' 712;
+		font-variation-settings:
+			'slnt' 0,
+			'wdth' 100,
+			'GRAD' 0,
+			'XOPQ' 96,
+			'XTRA' 468,
+			'YOPQ' 79,
+			'YTAS' 750,
+			'YTDE' -203,
+			'YTFI' 738,
+			'YTLC' 514,
+			'YTUC' 712;
 	}
 
 	.page:nth-of-type(1) {
@@ -119,19 +136,17 @@ import { usePrintLayout } from '@/stores/printLayout';
 		font-size: var(--fs-smallest);
 		font-weight: 400;
 	}
+
 	.label__pack-size {
 		grid-area: E;
 		font-size: var(--fs-normal);
 		font-weight: 500;
 	}
+
 	.label__pack-size::after {
 		content: 'szt.';
 		font-size: var(--fs-smallest);
 		font-weight: 400;
-	}
-
-	@page {
-		margin: 0;
 	}
 }
 </style>

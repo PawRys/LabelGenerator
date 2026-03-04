@@ -85,7 +85,7 @@ function printCheckList() {
 <style scoped>
 button {
 	align-items: center;
-	height: 3rem;
+	min-height: 3rem;
 }
 
 .single-card i {

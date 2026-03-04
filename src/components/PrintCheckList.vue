@@ -23,6 +23,18 @@ import { usePrintLayout } from '@/stores/printLayout';
 
 <style scoped>
 @media print {
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+
+	@page {
+		size: A4 portrait;
+		margin: 0;
+	}
+
 	table {
 		border-collapse: collapse;
 		--fs-normal: 2.7cm;
@@ -64,10 +76,6 @@ import { usePrintLayout } from '@/stores/printLayout';
 		display: grid;
 		grid-template-columns: repeat(5, auto);
 		gap: 1ch;
-	}
-
-	@page {
-		margin: 1cm;
 	}
 }
 </style>
