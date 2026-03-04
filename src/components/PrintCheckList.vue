@@ -67,7 +67,7 @@ import { usePrintLayout } from '@/stores/printLayout';
 	}
 
 	@page {
-		margin-inline: 1cm;
+		margin: 1cm;
 	}
 }
 </style>
