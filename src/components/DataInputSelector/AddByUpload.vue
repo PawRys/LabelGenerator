@@ -67,9 +67,9 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 		result.push(...fileContent);
 	}
 
-	// if (badFileType > 0) {
-	// 	alert(`Invalid file type: ${file.type} (${file.name})`);
-	// }
+	if (badFileType > 0) {
+		alert(`Tylko pliki .pdf`);
+	}
 	if (badFileName > 0) {
 		alert(`Tylko pliki "INVOICE"`);
 	}
