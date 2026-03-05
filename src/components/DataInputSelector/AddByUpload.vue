@@ -28,17 +28,19 @@ async function addItemsFromFiles(event: Event): Promise<void> {
 async function extractTextFromPDF(files: FileList): Promise<string[]> {
 	const filesCount = files.length;
 	let result = [];
+	let badFileType = 0;
+	let badFileName = 0;
 	for (let fileNo = 0; fileNo < filesCount; fileNo++) {
 		const file = files[fileNo];
 
 		if (file.type !== 'application/pdf') {
 			console.log(`Invalid file type: ${file.type}`, file);
-			alert(`Invalid file type: ${file.type} (${file.name})`);
+			badFileType++;
 			continue;
 		}
 
 		if (!file.name.match(/invoice/i)) {
-			alert(`Tylko pliki "INVOICE" (file name: ${file.name})`);
+			badFileName++;
 			continue;
 		}
 
@@ -63,6 +65,13 @@ async function extractTextFromPDF(files: FileList): Promise<string[]> {
 			}
 		}
 		result.push(...fileContent);
+	}
+
+	if (badFileType > 0) {
+		alert(`Invalid file type: ${file.type} (${file.name})`);
+	}
+	if (badFileName > 0) {
+		alert(`Tylko pliki "INVOICE"`);
 	}
 	return result;
 }
