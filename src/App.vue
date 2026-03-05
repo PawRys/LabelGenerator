@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, onBeforeUpdate, onMounted, onUpdated, watch } from 'vue';
+import { computed } from 'vue';
 import { useLabelsStore } from '@/stores/labels';
-const labelsStore = useLabelsStore();
 import { usePrintLayout } from '@/stores/printLayout';
 
+const labelsStore = useLabelsStore();
 const { layoutName } = storeToRefs(usePrintLayout());
 
-import InputChoice from './components/InputChoice.vue';
-import PrintSettings from './components/PrintSettings.vue';
+import DataInputSelector from './components/DataInputSelector.vue';
+import LabelLayoutSelector from './components/LabelLayoutSelector.vue';
 import Results from './components/Results.vue';
 
 import PrintSingle from '@/components/PrintSingle.vue';
@@ -18,7 +18,12 @@ import { storeToRefs } from 'pinia';
 const printLayoutList = {
 	PrintSingle: { component: PrintSingle, label: 'Jedna na stronę', orientation: 'landscape', icon: 'bi bi-box-seam' },
 	PrintDouble: { component: PrintDouble, label: 'Dwie na stronę', orientation: 'portrait', icon: 'bi bi-box-seam' },
-	PrintCheckList: { component: PrintCheckList, label: 'Lista', orientation: 'portrait', icon: 'bi bi-box-seam' },
+	PrintCheckList: {
+		component: PrintCheckList,
+		label: 'Lista kontrolna',
+		orientation: 'portrait',
+		icon: 'bi bi-box-seam',
+	},
 };
 
 const activeLayout = computed(() => {
@@ -40,8 +45,8 @@ const activeLayout = computed(() => {
 
 		<h1>Etykieter</h1>
 	</header>
-	<InputChoice class="noprint" />
-	<PrintSettings class="noprint" />
+	<DataInputSelector class="noprint" />
+	<LabelLayoutSelector class="noprint" />
 	<Results class="noprint" />
 
 	<component class="printme" :is="activeLayout.component"></component>

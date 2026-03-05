@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import AddByUpload from './InputChoice/AddByUpload.vue';
-import AddByForm from './InputChoice/AddByForm.vue';
+import AddByUpload from './DataInputSelector/AddByUpload.vue';
+import AddByForm from './DataInputSelector/AddByForm.vue';
 
 const components: any = { AddByUpload, AddByForm };
 const currentComp = ref('AddByUpload');

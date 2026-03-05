@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
-const labelsStore = useLabelsStore();
 import { usePrintLayout } from '@/stores/printLayout';
+const labelsStore = useLabelsStore();
 
 function plural(one: string, two: string, tre: string, val: number): String {
 	let result = '';

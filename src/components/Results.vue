@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useLabelsStore } from '@/stores/labels';
-import SmartInput from './InputChoice/SmartInput.vue';
+import SmartInput from './DataInputSelector/SmartInput.vue';
 
 const labelsStore = useLabelsStore();
 </script>
