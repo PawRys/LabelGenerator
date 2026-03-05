@@ -10,12 +10,12 @@ import { usePrintLayout } from '@/stores/printLayout';
 				v-for="({ invoice, contract, longDesc, itemSize, itemGlue, packsCount, packSize }, index) in labelsStore.items"
 				:key="index">
 				<td>{{ `${index + 1}.` }}</td>
+				<td class="item-size">{{ itemSize }}</td>
+				<td>{{ `${longDesc} ${itemGlue}` }}</td>
+				<td>{{ `${packsCount}x${packSize}` }}</td>
 				<td class="item-check">
 					<div class="grid"><i v-for="x in Number(packsCount)" :key="x" class="bi bi-square"></i></div>
 				</td>
-				<td>{{ `${packsCount}x${packSize}` }}</td>
-				<td class="item-size">{{ itemSize }}</td>
-				<td>{{ `${longDesc} ${itemGlue}` }}</td>
 			</tr>
 		</table>
 	</section>
