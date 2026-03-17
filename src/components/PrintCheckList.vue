@@ -37,13 +37,9 @@ import { usePrintLayout } from '@/stores/printLayout';
 
 	table {
 		border-collapse: collapse;
-		--fs-normal: 2.7cm;
-		--fs-small: calc(var(--fs-normal) * 0.75);
-		--fs-smaller: calc(var(--fs-normal) * 0.55);
-		--fs-smallest: calc(var(--fs-normal) * 0.35);
 
 		font-family: 'Roboto Flex', serif;
-		font-size: 1rem;
+		font-size: 12pt;
 		font-optical-sizing: auto;
 		font-style: normal;
 		font-variation-settings:
