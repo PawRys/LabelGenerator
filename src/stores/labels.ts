@@ -72,19 +72,23 @@ export const useLabelsStore = defineStore('labels', () => {
 				const aNums = a.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
 				const bNums = b.itemSize.split('x').map(s => parseFloat(s.replace(',', '.')));
 				const aOrdered = [
-					Math.round(aNums[1] / 304),
-					Math.round(aNums[2] / 304),
+					Math.round(Math.min(aNums[1], aNums[2]) / 305),
+					Math.round(Math.max(aNums[1], aNums[2]) / 305),
 					aNums[0],
 					aNums[1],
 					aNums[2],
+					// Math.min(aNums[1], aNums[2]),
+					// Math.max(aNums[1], aNums[2]),
 					Number(a.packSize),
 				];
 				const bOrdered = [
-					Math.round(bNums[1] / 304),
-					Math.round(bNums[2] / 304),
+					Math.round(Math.min(bNums[1], bNums[2]) / 305),
+					Math.round(Math.max(bNums[1], bNums[2]) / 305),
 					bNums[0],
 					bNums[1],
 					bNums[2],
+					// Math.min(bNums[1], bNums[2]),
+					// Math.max(bNums[1], bNums[2]),
 					Number(b.packSize),
 				];
 				for (let i = 0; i < aOrdered.length; i++) {
