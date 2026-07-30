@@ -49,9 +49,7 @@ function printCheckList() {
 	<section v-if="labelsStore.items.length > 0">
 		<!-- <div class="divider">---</div> -->
 		<div class="button-bar narrow-box-">
-			<span class="page-count">{{
-				`${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}`
-			}}</span>
+			<span class="page-count">{{ `${labelsStore.count()} ${plural('strona', 'strony', 'stron', labelsStore.count())}` }}</span>
 			<span class="page-count__info" data-tip="Liczba stron powinna zgadzać się z ilością paczek na CMR.">?</span>
 
 			<!-- <button @click="labelsStore.removeAll()">Usuń wszystkie</button> -->
@@ -66,7 +64,6 @@ function printCheckList() {
 				<span>Drukuj dwie na stronę</span>
 				<span class="double-card">
 					<i class="bi bi-card-text"></i>
-					<br />
 					<i class="bi bi-card-text"></i>
 				</span>
 			</button>
@@ -89,11 +86,16 @@ button {
 }
 
 .single-card i {
-	scale: 2;
+	display: inline-block;
+	transform: rotate(90deg);
+	scale: 1.4;
 }
 
+.double-card {
+	display: grid;
+}
 .double-card i {
-	line-height: 0;
+	scale: 1.2;
 	padding: 0;
 	margin: 0;
 }
