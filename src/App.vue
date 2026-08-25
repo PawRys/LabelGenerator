@@ -15,6 +15,8 @@ import PrintDouble from '@/components/PrintDouble.vue';
 import PrintCheckList from '@/components/PrintCheckList.vue';
 import { storeToRefs } from 'pinia';
 
+import MyApps from '@/components/MyApps.vue'
+
 const printLayoutList = {
 	PrintSingle: { component: PrintSingle, label: 'Jedna na stronę', orientation: 'landscape', icon: 'bi bi-box-seam' },
 	PrintDouble: { component: PrintDouble, label: 'Dwie na stronę', orientation: 'portrait', icon: 'bi bi-box-seam' },
@@ -35,13 +37,7 @@ const activeLayout = computed(() => {
 
 <template>
 	<header class="noprint">
-		<p>
-			<a href="https://pawrys.github.io/StockBrowser5/">Stany</a>
-			<span> / </span>
-			<a href="https://pawrys.github.io/LabelGenerator/">Etykiety</a>
-			<span> / </span>
-			<a href="https://pawrys.github.io/PurchaseComparator/">Tester</a>
-		</p>
+		<p><MyApps /></p>
 
 		<h1>Etykieter</h1>
 	</header>
